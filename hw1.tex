@@ -2,6 +2,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amsthm,amssymb}
 \usepackage{mathtools}
+
+% Bra-Ket hack from stack exchange
 \DeclarePairedDelimiter\bra{\langle}{\rvert}
 \DeclarePairedDelimiter\ket{\lvert}{\rangle}
 \DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1 \delimsize\vert #2}
@@ -264,12 +266,47 @@ a_1^\star b_1^\star c_1 d_1
 
 \subsection{}
 
-TODO - Associative product for tensor product
+$$
+\left(\vec{a}\otimes\vec{b}\right)\otimes\vec{c}
+=
+\begin{pmatrix} a_1b_1 \\ a_1b_2 \\ a_2b_1 \\ a_2b_2 \end{pmatrix}
+\otimes
+\begin{pmatrix} c_1 \\ c_2 \end{pmatrix}
+=
+\begin{pmatrix} a_1b_1c_1 \\ a_1b_1c_2 \\ a_1b_2c_1 \\ a_1b_2c_2 
+		\\ a_2b_1c_1 \\ a_2b_1c_2 \\ a_2b_2c_1 \\ a_2b_2c_2 \end{pmatrix}
+=
+\begin{pmatrix} a_1 \\ a_2 \end{pmatrix}
+\otimes
+\begin{pmatrix} b_1c_1 \\ b_1c_2 \\ b_2c_1 \\ b_2c_2 \end{pmatrix}
+=
+\vec{a} \otimes \left( \vec{b} \otimes \vec{c}\right)
+$$
 
 \subsection{}
 
-TODO - Trace product and tensor product
+We prove only for matrices of size $2\times2$. Let:
+\begin{align*}
+	A &= 
+	\begin{pmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{pmatrix} \\
+	B &=
+	\begin{pmatrix} b_{11} & b_{12} \\ b_{21} & b_{22} \end{pmatrix}
+\end{align*}
 
+Now we can "explicitly" compute:
+
+\begin{align*}
+tr\left( A \otimes B \right) &= tr
+\begin{pmatrix}
+a_{11}b_{11} & a_{11}b_{12} & a_{12}b_{11} & a_{12}b_{12} \\
+a_{11}b_{21} & a_{11}b_{22} & a_{12}b_{21} & a_{12}b_{22} \\
+a_{21}b_{11} & a_{21}b_{12} & a_{22}b_{11} & a_{22}b_{12} \\
+a_{21}b_{21} & a_{21}b_{22} & a_{22}b_{21} & a_{22}b_{22}
+\end{pmatrix} \\
+&= a_{11}b_{11} + a_{11}b_{22} + a_{22}b_{11} + a_{22}b_{22} \\
+&= \left(a_{11} + a_{22}\right) \left(b_{11} + b_{22}\right) \\
+&= tr\left(A\right) tr\left(B\right)
+\end{align*}
 \subsection{}
 
 TODO - Tensor product keeps unitary property
