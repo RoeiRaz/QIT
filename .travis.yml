@@ -2,7 +2,7 @@ before_install:
 - "sudo apt-get update && sudo apt-get install --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng textlive-latex3"
 script:
 - mkdir _build
-- pdflatex -halt-on-error -output-directory _build hw1.tex
+- pdflatex -halt-on-error -interaction=nonstopmode -output-directory _build hw1.tex
 deploy:
   provider: releases
   api_key:
