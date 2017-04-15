@@ -1,0 +1,317 @@
+\documentclass[a4paper,10pt]{hw}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bra{\langle}{\rvert}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}
+\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1 \delimsize\vert #2}
+
+%opening
+\title{Introduction to Quantum Information Processing}
+\author{Roei Rosenzweig 313590937,\\ Roey Maor 820082000}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+
+\subsection{}
+
+$tr(A^{\dagger}) = \sum_{i=1}^{n}{a_{ii}^*} = (\sum_{i=1}^{n}{a_{ii}})^* = (tr(A))^*$
+
+\subsection{}
+
+$tr(\alpha A + \beta B) = \sum_{i=1}^{n}{\alpha A_{ii} + \beta B_{ii}} = \alpha\sum_{i=1}^{n}{A_{ii}} + \beta\sum_{i=1}^{n}{B_{ii}} = \alpha tr(A) + \beta tr(B)$
+
+\subsection{}
+
+$tr(AB) = \sum_{i=1}^{n}{(AB)_{ii}} = \sum_{i=1}^{n}{(\sum_{k=1}^{n}{A_{ik} B_{ki}})} = \sum_{i=1}^{n}{(\sum_{k=1}^{n}{B_{ki} A_{ik}})} = \sum_{i=1}^{n}{(BA)_{ii}} = tr(BA)$ 
+
+\section{}
+
+Throughout this part we mark eigenvalues with $\lambda_i$ and eigenvectors with $v_i$.
+In order to find the eigenvalue we use the identities $tr(A) = \sum{\lambda_i}$ and $det(A) = \prod{\lambda_i}$.
+
+\subsection{}
+
+$$\begin{array}{lclcl}
+   tr(H) & = & \lambda_{1} + \lambda_{2} & = & 0\\
+   det(H) & = & \lambda_{1} \lambda_{2} & = & -1
+\end{array}$$
+
+Solving for $\lambda_{1,2}$ yields:
+
+$$\begin{array}{lcr}
+   \lambda_1 & = & \pm1 \\
+   \lambda_2 & = & \mp1
+\end{array}$$
+
+Because of the symmetry, we can just assume $\lambda_1 = 1$ and $\lambda_2 = -1$.
+To find the eigenvectors we solve for $v_i$:
+$$\begin{array}{lcr}
+   (H - I\lambda_i) v_i = 0
+  \end{array}$$
+  
+TODO
+
+\section{}
+
+\subsection{}
+
+\subsubsection{}
+
+$\sigma_x$ is a symmetric and real matrix, and as such it is also Hermitian.
+
+\subsubsection{}
+
+$$\sigma_y^\dagger
+= \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}^\dagger
+= \begin{pmatrix} 0 & i^* \\ -i^* & 0 \end{pmatrix}
+= \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}
+= \sigma_y$$
+
+because $\sigma_y^\dagger = \sigma_y$, $\sigma_y$ is Hermitian.
+
+\subsubsection{}
+
+$\sigma_z$ is a symmetric and real matrix, and as such it is also Hermitian.
+
+\subsubsection{}
+
+$H^\dagger = \frac{1}{\sqrt{2}}^\star \cdot \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}^\dagger \stackrel{\text{real numbers, symmetric matrix}}{=} \frac{1}{\sqrt{2}}
+\cdot \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} = H$
+
+\subsection{}
+
+\subsubsection{}
+
+\begin{align*}
+\left(\alpha A + \beta B\right)^\dagger &
+\\ &= \left(\alpha A\right)^\dagger + \left(\beta B\right)^\dagger		\tag{Linearity of conjugation}
+\\ &= \alpha^* A^\dagger + \beta^* B^\dagger	
+\\ &= \alpha A^\dagger + \beta B^\dagger	\tag{$\alpha, \beta \in \mathbb{R}$}
+\\ &= \alpha A + \beta B	\tag{$A, B$ are Hermitian} \qedhere
+\end{align*}
+
+\subsubsection{}
+
+\begin{align*}
+\left(\star\right) &= \left(\alpha - \beta\right)\braket{v}{u}
+\\ &= \alpha\braket{v}{u} - \beta\braket{v}{u}
+\\ &= \alpha\braket{u}{v} - \beta\braket{v}{u}		\tag{$\braket{v}{u}=\braket{u}{v}$}
+\\ &= \bra{u}A\ket{v} - \beta\braket{v}{u}			\tag{$A\ket{v}=\alpha\ket{v}$}
+\\ &= \bra{u}A\ket{v} - \bra{v}A\ket{u}				\tag{$A\ket{u}=\beta\ket{u}$}
+\\ &= 0
+\end{align*}
+
+Because $\alpha \neq \beta$ and $\left(\star\right) = 0$, we must conclude that $\braket{v}{u} = 0 \qed$.
+
+\section{}
+
+\subsection{}
+
+For Hermitian matrix $\alpha_i = \alpha_i^\dagger$, $\alpha_i\alpha_i^\dagger = \alpha_i^\dagger\alpha_i = I \iff \alpha_i^2 = I$. 
+
+\begin{itemize}
+
+\item $\alpha_x\cdot\alpha_x = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}^2 = I$
+\item $\alpha_y\cdot\alpha_y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}^2 = I$
+\item $\alpha_z\cdot\alpha_z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}^2 = I$
+\item $H \cdot H = \left(\frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}\right)^2 = I$
+
+\end{itemize}
+
+\subsection{} \label{question 4.2}
+
+
+Denote the i-th column of $U$ by $U_i$. It holds that $U^\dagger U = I$, so from the definition of matrices multiplication we get: 
+$$(U_i)^\dagger U_j = I_{ij}$$ 
+By definition, 
+$$I_{ij} = \delta_{ij} = \begin{cases} 1 & i=j \\ 0 & otherwise \end{cases}$$
+Putting it all together:
+$$(U_i)^\dagger U_j = \left\langle U_i, U_j\right\rangle = \delta_{ij}$$
+
+\subsection{}
+
+TODO - Orthonormality of column $\to$ unitary matrix
+
+\subsection{}
+
+TODO - All the eigenvalues of unitary matrix are complex of length 1.
+
+\section{}
+
+\subsection{}
+
+\subsubsection{}
+%5.1.1
+$$
+(\vec{a} + \vec{c}) \otimes \vec{b}
+\
+=
+\begin{pmatrix} 
+(a_1 + c_1) \vec{b} \\ (a_2 + c_2) \vec{b} \\ \vdots \\ (a_k + c_k) \vec{b} 
+\end{pmatrix}
+\
+=
+\begin{pmatrix} 
+a_1 \vec{b} \\ a_2 \vec{b} \\ \vdots \\ a_k \vec{b} 
+\end{pmatrix}
++
+\begin{pmatrix} 
+c_1 \vec{b} \\ c_2 \vec{b} \\ \vdots \\ c_k \vec{b} 
+\end{pmatrix}
+\
+=
+\vec{a}\otimes\vec{b} + \vec{c}\otimes\vec{b}
+$$
+
+
+\subsubsection{}
+%5.1.2
+$$
+\vec{a} \otimes (\vec{b} + \vec{c})
+\
+=
+\begin{pmatrix}
+a_1 (\vec{b} + \vec{c}) \\ a_2 (\vec{b} + \vec{c}) \\ \vdots \\ a_k (\vec{b} + \vec{c})
+\end{pmatrix}
+\
+=
+\begin{pmatrix}
+a_1 \vec{b}  \\ a_2 \vec{b} \\ \vdots \\ a_k \vec{b}
+\end{pmatrix}
++
+\begin{pmatrix}
+a_1 \vec{c}  \\ a_2 \vec{c} \\ \vdots \\ a_k \vec{c}
+\end{pmatrix}
+\
+=
+\vec{a}\otimes\vec{b}+\vec{a}\otimes\vec{c}
+$$
+
+\subsubsection{}
+%5.1.3 scalar multiplication
+$$
+\vec{a}\otimes\left(c\cdot\vec{b}\right)
+\
+=
+\begin{pmatrix}
+a_1 \cdot c\vec{b}\\ a_2 \cdot c\vec{b}\\ \vdots\\ a_k\cdot c\vec{b}
+\end{pmatrix}
+\
+=
+\underbrace{
+	\begin{pmatrix}
+	c\cdot a_1\vec{b}\\ c\cdot a_2 \vec{b}\\ \vdots\\ c\cdot a_k\vec{b}
+	\end{pmatrix}
+}_{
+	\left(c\cdot \vec{a}\right) \otimes \vec{b}
+}
+\
+=
+c\cdot 
+\begin{pmatrix}
+a_1\vec{b}\\ a_2 \vec{b}\\ \vdots\\ a_k\vec{b}
+\end{pmatrix}
+\
+=
+c\cdot\left(\vec{a}\otimes\vec{b}\right)
+$$
+
+\subsubsection{}
+%5.1.4
+Let 
+$$
+\vec{a} = \begin{pmatrix} a_1 \\ a_2 \end{pmatrix},
+\vec{b} = \begin{pmatrix} b_1 \\ b_2 \end{pmatrix},
+\vec{c} = \begin{pmatrix} c_1 \\ c_2 \end{pmatrix},
+\vec{d} = \begin{pmatrix} d_1 \\ d_2 \end{pmatrix}
+\in \mathbb{C}^2
+$$ 
+
+We can compute the following tensor products:
+
+
+\begin{align*} 
+\vec{a}\otimes\vec{b} &= \begin{pmatrix} a_1b_1\\a_1b_2\\a_2b_1\\a_2b_2 \end{pmatrix} \\
+\vec{c}\otimes\vec{d} &= \begin{pmatrix} c_1d_1\\c_1d_2\\c_2d_1\\c_2d_2 \end{pmatrix}
+\end{align*}
+
+Plugging them into the inner product yields:
+
+\begin{align*}
+\left\langle\vec{a}\otimes\vec{b},\vec{c}\otimes\vec{d}\right\rangle
+=
+\begin{pmatrix} a_1b_1\\a_1b_2\\a_2b_1\\a_2b_2 \end{pmatrix}^\dagger
+\cdot \begin{pmatrix} c_1d_1\\c_1d_2\\c_2d_1\\c_2d_2 \end{pmatrix}
+&=
+a_1^\star b_1^\star c_1 d_1
++ a_1^\star b_2^\star c_1 d_2
++ a_2^\star b_1^\star c_2 d_1
++ a_2^\star b_2^\star c_2 d_2 \\
+&=
+(a_1^\star c_1)(b_1^\star d_1)
++ (a_1^\star c_1)(b_2^\star d_2)
++ (a_2^\star c_2)(b_1^\star d_1)
++ (a_2^\star c_2)(b_2^\star d_2) \\
+&=
+(a_1^\star c_1 + a_2^\star c_2) (b_1^\star d_1 + b_2^\star d_2)\\
+&= \left\langle \vec{a},\vec{c} \right\rangle 
+	\left\langle \vec{b},\vec{d} \right\rangle \qed
+\end{align*}
+
+\subsection{}
+
+TODO - Associative product for tensor product
+
+\subsection{}
+
+TODO - Trace product and tensor product
+
+\subsection{}
+
+TODO - Tensor product keeps unitary property
+
+\subsection{}
+
+TODO - Distribution for 2 tensor products
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
