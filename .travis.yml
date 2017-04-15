@@ -1,0 +1,15 @@
+before_install:
+- "sudo apt-get update && sudo apt-get install --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng"
+script:
+- mkdir _build
+- pdflatex -output-directory _build tex/hw1.tex
+deploy:
+  provider: releases
+  api_key:
+    secure: ef7a2b0590208b1d10017a3850495dbb40776831
+  file:
+  - _build/hw1.pdf
+  skip_cleanup: true
+  on:
+    tags: true
+
