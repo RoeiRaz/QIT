@@ -7,7 +7,6 @@
 \RequirePackage{fancyhdr}
 \RequirePackage[top=1in,bottom=1in,left=1in,right=1in]{geometry}
 \RequirePackage{graphicx}
-\RequirePackage{empheq}
 \RequirePackage{ifthen}
 
 % ================================ Commands ===================================
