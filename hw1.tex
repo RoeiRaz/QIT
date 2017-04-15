@@ -140,8 +140,11 @@ TODO - Orthonormality of column $\to$ unitary matrix
 
 \subsection{}
 
-TODO - All the eigenvalues of unitary matrix are complex of length 1.
-
+Let $\lambda$ be an eigenvalue with eigenvector $v\neq \vec{0}$ of unitary matrix $U$. Then,
+$$
+\left\langle v,v \right\rangle = \left\langle Uv,Uv \right\rangle
+	= \left\langle \lambda v, \lambda v \right\rangle =  \lambda^\star\lambda \left\langle v,v \right\rangle \Rightarrow \lambda^\star\lambda = 1 \Rightarrow |\lambda | = 1
+$$
 \section{}
 
 \subsection{}
@@ -309,12 +312,89 @@ a_{21}b_{21} & a_{21}b_{22} & a_{22}b_{21} & a_{22}b_{22}
 \end{align*}
 \subsection{}
 
-TODO - Tensor product keeps unitary property
+As we've seen in previous exercises, for 2 matrices of size $2\times2$ we get
+$$
+A \otimes B =
+\begin{pmatrix}
+a_{11}b_{11} & a_{11}b_{12} & a_{12}b_{11} & a_{12}b_{12} \\
+a_{11}b_{21} & a_{11}b_{22} & a_{12}b_{21} & a_{12}b_{22} \\
+a_{21}b_{11} & a_{21}b_{12} & a_{22}b_{11} & a_{22}b_{12} \\
+a_{21}b_{21} & a_{21}b_{22} & a_{22}b_{21} & a_{22}b_{22}
+\end{pmatrix}
+$$
+
+Denote the $i$-th column in this product by $D_1$. Without loss of generality, we show that $\left\langle D_1, D_2 \right\rangle = 1$ and that $\left\langle D_1, D_1 \right\rangle = 0$. The proof for the other cases is very similar.
+
+\begin{align*}
+\left\langle D_1, D_2 \right\rangle &= 
+a_{11}^2 b_{11}b_{12} 
++ a_{11}^2 b_{21}b_{22}
++ a_{21}^2 b_{11}b_{12}
++ a_{21}^2 b_{21}b_{22} \\
+&= 
+a_{11}^2\left(b_{11}b_{12} + b_{21}b_{22}\right) 
++ a_{21}^2\left(b_{11}b_{12} + b_{21}b_{22}\right) \\
+&= \left(a_{11}^2 + a_{21}^2\right) 
+\underbrace{\left\langle B_1, B_2 \right\rangle}_{=0} = 0 
+\\
+\\
+\left\langle D_1, D_1 \right\rangle &= 
+a_{11}^2 b_{11}^2
++ a_{11}^2 b_{21}^2
++ a_{21}^2 b_{11}^2
++ a_{21}^2 b_{21}^2 \\
+&=
+\left(a_{11}^2 + a_{21}^2\right) \left(b_{11}^2 + b_{21}^2\right) \\
+&=
+\left\langle A_1, A_1 \right\rangle \left\langle B_1, B_1 \right\rangle = 1
+\end{align*}
 
 \subsection{}
 
-TODO - Distribution for 2 tensor products
-
+Recall our previous notation:
+$$
+A \otimes B =
+\begin{pmatrix}
+a_{11}b_{11} & a_{11}b_{12} & a_{12}b_{11} & a_{12}b_{12} \\
+a_{11}b_{21} & a_{11}b_{22} & a_{12}b_{21} & a_{12}b_{22} \\
+a_{21}b_{11} & a_{21}b_{12} & a_{22}b_{11} & a_{22}b_{12} \\
+a_{21}b_{21} & a_{21}b_{22} & a_{22}b_{21} & a_{22}b_{22}
+\end{pmatrix}
+$$
+Also,
+$$
+\vec{u} \otimes \vec{v} = 
+\begin{pmatrix} u_1 v_1 \\ u_1 v_2 \\ u_2 v_1 \\ u_2 v_2 \end{pmatrix}
+$$
+Thus we get:
+\begin{align*}
+\left(A \otimes B\right) \left(\vec{u} \otimes \vec{v}\right)
+&=
+\begin{pmatrix}
+a_{11}b_{11}u_1v_1 + a_{11}b_{12}u_1v_2 + a_{12}b_{11}u_2v_1 + a_{12}b_{12}u_2v_2\\
+a_{11}b_{21}u_1v_1 + a_{11}b_{22}u_1v_2 + a_{12}b_{21}u_2v_1 + a_{12}b_{22}u_2v_2\\
+a_{21}b_{11}u_1v_1 + a_{21}b_{12}u_1v_2 + a_{22}b_{11}u_2v_1 + a_{22}b_{12}u_2v_2\\
+a_{21}b_{21}u_1v_1 + a_{21}b_{22}u_1v_2 + a_{22}b_{21}u_2v_1 + a_{22}b_{22}u_2v_2
+\end{pmatrix}\\
+&= 
+\begin{pmatrix}
+(a_{11}u_1 + a_{12}u_2)(b_{11}v_1 + b_{12}v_2) \\
+(a_{11}u_1 + a_{12}u_2)(b_{21}v_1 + b_{22}v_2)	\\
+(a_{21}u_1 + a_{22}u_2)(b_{11}v_1 + b_{12}v_2) \\
+(a_{21}u_1 + a_{22}u_2)(b_{21}v_1 + b_{22}v_2)
+\end{pmatrix} \\
+&=
+\begin{pmatrix}
+a_{11}u_1 + a_{12}u_2 \\
+a_{21}u_1 + a_{22}u_2
+\end{pmatrix}
+\otimes
+\begin{pmatrix}
+b_{11}v_1 + b_{12}v_2 \\
+b_{21}v_1 + b_{22}v_2
+\end{pmatrix} \\
+&= A\vec{u} \otimes B\vec{v}
+\end{align*}
 \end{document}
 
 
