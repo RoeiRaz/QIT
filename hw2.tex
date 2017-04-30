@@ -3,6 +3,10 @@
 \usepackage{amsmath,amsthm,amssymb}
 \usepackage{mathtools}
 
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
 % Bra-Ket hack from stack exchange
 \DeclarePairedDelimiter\bra{\langle}{\rvert}
 \DeclarePairedDelimiter\ket{\lvert}{\rangle}
@@ -34,6 +38,30 @@ Plugging it, we get:
 $$\boxed{ I(X;Y) = -\sum_{x,y}p(x,y)\log_{2}\left(\frac{p(x)p(y)}{p(x,y)}\right)}$$
 
 \item % Question 1, sub section 2
+
+We can write $I(X;Y)$ using the logarithm-identity $\log_{a}x \cdot \log_{b}a = \log_{b}x$ as:
+
+$$ K\cdot I(X;Y) = -\sum_{x,y}p(x,y)\ln\left(\frac{p(x)p(y)}{p(x,y)}\right) $$
+
+Where $K = \ln 2 > 0$. By using the identity $\ln t \leq t - 1$ for $t > 0$ and knowing that $\frac{p(x)p(y)}{p(x,y)}$ is non-negative (because probability cannot be negative, obv.) we show:
+
+$$ - K\cdot I(X;Y) \leq \sum_{x,y}p(x,y)\left(\frac{p(x)p(y)}{p(x,y)} - 1\right)
+	= \sum_{x,y}\left(p(x)p(y) - p(x,y)\right) $$
+
+$\ln t \leq t - 1$ is equality \textbf{iff} $t = 1$.
+\begin{corollary}
+\label{corollary:1}
+$-  K\cdot I(X;Y) = \sum_{x,y}\left(p(x)p(y) - p(x,y)\right) $ \emph{iff} $X, Y$ are independent. \textbf{Proof:} If $X, Y$ are independent $\iff$ $p(x)p(y) = p(x,y)$ for every pair of $x,y$ $\iff$ $\forall x,y: \frac{p(x)p(y)}{p(x,y)} = 1$ $\iff$
+\end{corollary}
+
+We expand the expression to get sums over probabilities (which we can reduce to $1$):
+
+$$ - K\cdot I(X;Y) \leq \sum_{x} \left(p(x) \cdot \sum_{y} p(y)\right) - \sum_{x,y}p(x,y) $$
+
+$$ \Rightarrow I(X;Y) \geq K \cdot \sum_{x} p(x) - 1 = 0 \Rightarrow \boxed{I(X;Y) \geq 0}$$
+
+From \ref{corollary:1} and the above expansion we can conclude that $I(X;Y) = 0$ $\iff$ $X, Y$ are independent.
+
 
 \end{enumerate}
 
