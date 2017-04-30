@@ -1,6 +1,8 @@
 \documentclass[a4paper,10pt]{hw}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amsthm,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{tabularx}
 \usepackage{mathtools}
 
 \newtheorem{theorem}{Theorem}[section]
@@ -11,6 +13,9 @@
 \DeclarePairedDelimiter\bra{\langle}{\rvert}
 \DeclarePairedDelimiter\ket{\lvert}{\rangle}
 \DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1 \delimsize\vert #2}
+
+% TabularX streched-centered column (Z)
+\newcolumntype{Z}{>{\vfill\centering\let\newline\\\arraybackslash\hspace{0pt}}X}
 
 %opening
 \title{Introduction to Quantum Information Processing}
@@ -66,7 +71,130 @@ From \ref{corollary:1} and the above expansion we can conclude that $I(X;Y) = 0$
 \end{enumerate}
 
 
+\section{Entropy and Mutual Information}
 
+\begin{enumerate}
+
+\item % Question 2, sub section 1
+
+$$
+\begin{array}{rcl}
+Y &=& \begin{cases} 1,& \text{the keys are in the pocket} \\ 0, & otherwise \end{cases} \\
+X &=& \begin{cases} i\in[1,100],&\text{the keys are in the i-th location} \\ 0, & \text{otherwise} \end{cases}
+\end{array}
+$$
+
+\item % Question 2, sub section 2
+
+%TODO this looks like crap
+
+\hfill\\
+
+\newcommand{\pyzxz}{
+$$
+\begin{array}{lcl}
+p(X=0, Y=0) & = & 0\\
+p(X=0 | Y=0) & = & 0\\
+p(Y=0 | X=0) & = & 0
+\end{array}
+$$
+}
+
+\newcommand{\pylxz}{
+$$
+\begin{array}{lcl}
+p(X=0, Y=1) & = & 0.99\\
+p(X=0 | Y=1) & = & 1\\
+p(Y=1 | X=0) & = & 1
+\end{array}
+$$
+}
+
+\newcommand{\pylxi}{
+$$
+\begin{array}{lcl}
+i > 0 &&\\
+p(X=i, Y=1) & = & 0\\
+p(X=i | Y=1) & = & 0\\
+p(Y=1 | X=i) & = & 0
+\end{array}
+$$
+}
+
+\newcommand{\pyzxi}{
+$$
+\begin{array}{lcl}
+i > 0 &&\\
+p(X=i, Y=0) & = & 0.0001\\
+p(X=i | Y=0) & = & 0.01\\
+p(Y=0 | X=i) & = & 1
+\end{array}
+$$
+}
+
+\begin{center}
+%\rowcolors{1}{cyan}{white}
+\begin{tabularx}{\textwidth}{c |ZZZ}
+ 				& 		$Y = 0$ 		& 		$Y = 1$		&		 					\tabularnewline
+\hline
+$X = 0$ 		&  		\pyzxz			& 		\pylxz		& $p(X = 0) = 0.99$			\tabularnewline
+$X = i > 0$ 	& 		\pylxi			& 		\pyzxi		& $p(X = i > 0) = 0.0001$ 	\tabularnewline
+			 	& $p(Y = 0) = 0.01$			& $p(Y = 1) = 0.99$		& $1$ 				\tabularnewline
+\end{tabularx}
+\end{center}
+
+\item
+
+\begin{flalign*}
+H(X) 	&= -\sum_{x}p(X = x)\log_{2}p(X = x)&\\
+ 		&= -p(X = 0)\log_{2}p(X = 0) -100\cdotp(X = i)\log_{2}p(X = i) \\
+ 		&= -0.99\cdot\log_{2}0.99 - 100\cdot0.0001\log_{2}0.0001\\
+ 		&= 0.044
+\end{flalign*}
+
+
+\begin{flalign*}
+H(Y) 	&= -\sum_{y}p(Y = y)\log_{2}p(Y = y) &\\
+ 		&= -p(Y = 0)\log_{2}p(Y = 0) -\cdotp(Y = 1)\log_{2}p(Y = 1) \\
+ 		&= -0.01\cdot\log_{2}0.01 - 0.99\log_{2}0.99\\
+ 		&= 0.024
+\end{flalign*}
+
+
+\begin{flalign*}
+H(X|Y=0) 	&= -\sum_{x}p(X|Y = 0)\log_{2}p(X|Y = 0)&\\
+ 		&= -p(X = 0|Y = 0)\log_{2}p(X = 0|Y = 0) -100\cdotp(X = i|Y = 0)\log_{2}p(X = i|Y = 0) \\
+ 		&= -100\cdot0.01\log_{2}0.01\\
+ 		&= 2
+\end{flalign*}
+
+\begin{flalign*}
+H(X|Y=1) 	&= -\sum_{x}p(X|Y = 1)\log_{2}p(X|Y = 1)&\\
+ 		&= -p(X = 0|Y = 1)\log_{2}p(X = 0|Y = 1) -100\cdotp(X = i|Y = 1)\log_{2}p(X = i|Y = 1) \\
+ 		&= -1\cdot 0\\
+ 		&= 0
+\end{flalign*}
+
+\begin{flalign*}
+H(X|Y) 	&= -\sum_{x,y}p(X=x, Y=y)\log_{2}p(X = x|Y = y)&\\
+ 		&= -p(X = 0, Y = 0)\log_{2}p(X = 0|Y = 0) -\sum_{i=1}^{100}p(X = i, Y = 0)\log_{2}p(X = i|Y = 0)\\
+ 		&\hspace{10pt} -p(X = 0, Y = 1)\log_{2}p(X = 0|Y = 1) -\sum_{i=1}^{100}p(X = i, Y = 1)\log_{2}p(X = i|Y = 1) \\ 
+ 		&= 0 -100\cdot 0.0001\log_{2}0.01 -0.99\log_{2}1 -100\cdot 0 \\
+ 		&= 0.02
+\end{flalign*}
+
+\begin{flalign*}
+H(Y|X) 	&= -\sum_{x,y}p(X=x, Y=y)\log_{2}p(Y = y|X = x)&\\
+ 		&= -p(X = 0, Y = 0)\log_{2}p(Y = 0|X = 0) -\sum_{i=1}^{100}p(X = i, Y = 0)\log_{2}p(Y = 0|X = i)\\
+ 		&\hspace{10pt} -p(X = 0, Y = 1)\log_{2}p(Y = 1|X = 0) -\sum_{i=1}^{100}p(Y = 1, X = i)\log_{2}p(Y = 1|X = i) \\ 
+ 		&= 0 -0 -0 -0 \\
+ 		&= 0
+\end{flalign*}
+
+% Question 2, sub section 4
+\item
+
+\end{enumerate}
 
 \end{document}
 
