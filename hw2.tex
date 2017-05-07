@@ -196,6 +196,54 @@ H(Y|X) 	&= -\sum_{x,y}p(X=x, Y=y)\log_{2}p(Y = y|X = x)&\\
 
 \end{enumerate}
 
+\section{Poincare Sphere}
+
+\begin{enumerate}
+
+% Question 3, sub section 1
+\item
+
+\begin{itemize}
+
+	\item \textbf{Direction: $\braket{\phi}{\phi^\prime} = 0 \Rightarrow$ $\ket{\phi}$ and $\ket{\phi^\prime}$ are on opposite sides of poincar\'{e} sphere } \\
+	
+	If $\braket{\phi}{\phi^\prime} = 0$ then:
+	
+	$$
+	\begin{pmatrix}
+	\cos{\frac{\theta}{2}} && e^{i\phi}\sin{\frac{\theta}{2}}
+	\end{pmatrix}
+	\cdot
+	\begin{pmatrix}
+	\cos{\frac{\theta^\prime}{2}} \\ e^{i\phi^\prime}\sin{\frac{\theta^\prime}{2}}
+	\end{pmatrix}
+	=
+	0
+	$$
+
+	Unpacking this equation, we get:
+	
+	$$
+	(\star) = \cos{\frac{\theta}{2}} \cos{\frac{\theta^\prime}{2}} + e^{i(\phi + \phi^\prime)}\sin{\frac{\theta}{2}} \sin{\frac{\theta^\prime}{2}} = 0
+	$$
+	
+	In particular, $Im(\star) = 0$, thus $\phi \equiv -\phi^\prime(\mod 2\pi)$ (The states are in opposite directions w.r.t. $\phi$ and $\phi^\prime$). We are left with:
+	
+	$$
+	\cos{\frac{\theta}{2}} \cos{\frac{\theta^\prime}{2}} + \sin{\frac{\theta}{2}} \sin{\frac{\theta^\prime}{2}} = 0 \Rightarrow \sin\left(\frac{\pi}{2} + \frac{\theta}{2}\right)\cos{\frac{\theta^\prime}{2}} = \cos\left(\frac{\pi}{2} + \frac{\theta}{2}\right)\sin{\frac{\theta^\prime}{2}}
+	$$
+	
+	Which we can simplify to
+	
+	$$
+	\tan\left(\frac{\pi}{2} + \frac{\theta}{2}\right) = \tan{\frac{\theta^\prime}{2}}
+	\Rightarrow
+	\pi + \theta = \theta^\prime
+	$$
+\end{itemize}
+
+\end{enumerate}
+
 \end{document}
 
 
