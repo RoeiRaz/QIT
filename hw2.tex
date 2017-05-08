@@ -86,7 +86,7 @@ $$
 
 \item % Question 2, sub section 2
 
-%TODO this looks like crap
+%TODO this looks bad
 
 \hfill\\
 
@@ -193,6 +193,20 @@ H(Y|X) 	&= -\sum_{x,y}p(X=x, Y=y)\log_{2}p(Y = y|X = x)&\\
 
 % Question 2, sub section 4
 \item
+\begin{flalign*}
+I(X;Y) &= H(X) - H(X|Y) \\
+&= 0.044 - 0.02 = 0.024
+\end{flalign*}
+
+
+\begin{flalign*}
+I(Y;X) &= H(Y) - H(Y|X) \\
+&= 0.024 - 0 = 0.024
+\end{flalign*}
+
+% Question 2, sub section 5
+\item
+When we learn that the keys are not in the pocket, the entropy raises: $H(X|Y=0) > H(X)$. It seems strange because by "learning" something about the system, we reduced our information, but it is only guaranteed that \textbf{on average} the entropy is reduced when learning. The amount of entropy $H(X)$ reduced on average when learning the value of random variable $Y$ is $I(X;Y)$, and this value is always non-negative.
 
 \end{enumerate}
 
@@ -270,6 +284,134 @@ H(Y|X) 	&= -\sum_{x,y}p(X=x, Y=y)\log_{2}p(Y = y|X = x)&\\
 	& = \cos{\frac{\theta}{2}} \sin{\frac{\theta}{2}} - \sin{\frac{\theta}{2}} \cos{\frac{\theta}{2}} = 0
 	\end{align*}
 \end{itemize}
+
+% Question 3 sub section 2
+\item
+There is an infinite amount of ensembles, and exactly one ensembles that consists of 2 orthogonal states.
+
+% Question 3 sub section 3
+\item
+There is an infinite amount of ensembles, all of which are pairs of orthogonal states.
+
+\end{enumerate}
+
+\section{Measurements}
+
+\begin{enumerate}
+
+% Question 4 sub section 1
+\item
+
+\begin{itemize}
+
+	\item
+	$ Pr(\ket{+}) = |\braket{+}{\phi}|^2 = \frac{1}{2} \cdot (\alpha + \beta)^2
+	 $
+
+	\item
+	$ Pr(\ket{\theta}) = |\braket{\theta}{\phi}|^2 = \alpha^2\cos^2\theta - 2\alpha\beta\cos\theta\sin\theta + \beta^2\sin^2\theta = 1 -\alpha\beta\sin{2\theta}
+	$
+
+\end{itemize}
+
+% Question 4 sub section 2
+\item
+
+\begin{itemize}
+
+	\item
+	$Pr(\ket{10}) = \bra{10}p\ket{10} = p_2$
+	
+	\item
+	$Pr(\ket{00}) = \bra{00}p\ket{00} = p_0$
+
+\end{itemize}
+
+% Question 4 sub section 3
+
+\begin{itemize}
+
+	\item
+	$$\ket{-+} = 
+	\left(\frac{1}{\sqrt{2}} \begin{pmatrix} 1 \\ -1 \end{pmatrix}\right) 
+	\otimes \left(\frac{1}{\sqrt{2}} \begin{pmatrix} 1 \\ 1 \end{pmatrix}\right)
+	=
+	\frac{1}{2} \begin{pmatrix} 1 \\ 1 \\ -1 \\ -1 \end{pmatrix}
+	$$
+	Thus,
+	$$
+	Pr({\ket{-+}}) = \frac{1}{4} \begin{pmatrix} 1 & 1 & -1 & -1 \end{pmatrix}
+	\begin{pmatrix}
+	p0 & 0 & 0 & 0 \\
+	0 & p1 & 0 & 0 \\
+	0 & 0 & p2 & 0 \\
+	0 & 0 & 0 & p3
+	\end{pmatrix}
+	\begin{pmatrix} 1 \\ 1 \\ -1 \\ -1 \end{pmatrix}
+	=
+	\frac{p0 + p1 + p2 + p3}{4}
+	$$	
+	
+	\item
+	$$\ket{1+} = 
+	\begin{pmatrix} 0 \\ 1 \end{pmatrix}
+	\otimes \left(\frac{1}{\sqrt{2}} \begin{pmatrix} 1 \\ 1 \end{pmatrix}\right)
+	=
+	\frac{1}{\sqrt{2}} \begin{pmatrix} 0 \\ 0 \\ 1 \\ 1 \end{pmatrix}
+	$$
+	Thus,	
+	$$
+	Pr({\ket{1+}}) = \frac{1}{2} \begin{pmatrix} 0 & 0 & 1 & 1 \end{pmatrix}
+	\begin{pmatrix}
+	p0 & 0 & 0 & 0 \\
+	0 & p1 & 0 & 0 \\
+	0 & 0 & p2 & 0 \\
+	0 & 0 & 0 & p3
+	\end{pmatrix}
+	\begin{pmatrix} 0 \\ 0 \\ 1 \\ 1 \end{pmatrix}
+	=
+	\frac{p2 + p3}{2}
+	$$	
+	
+\end{itemize}
+
+\end{enumerate}
+
+\section{Double slit experiment}
+
+\begin{enumerate}
+
+% Question 5 sub section 1
+\item
+\begin{align*}
+\vec{E_1}(\vec{r_1}, t) + \vec{E_2}(\vec{r_2}, t)
+&= \frac{\vec{E_0}}{r_1}\cos{(k\cdot r_1 - w\cdot r)} + \frac{\vec{E_0}}{r_2}\cos{(k\cdot r_2 -w\cdot r)}\\
+&\approx \frac{\vec{E_0}}{r} \left( \cos{(k\cdot r_1 - w\cdot r)}+\cos{(k\cdot r_2 -w\cdot r)}\right) \\
+&= \boxed{2\frac{\vec{E_0}}{r}\cos{\left( \frac{k\cdot r_1 + k\cdot r_2 - 2w\cdot t}{2} \right)} \cos{\left(\frac{k(r_1 - r_2)}{2}\right)}}
+\end{align*}
+
+% Question 5 sub section 2
+\item
+\begin{align*}
+|\vec{E_1}(\vec{r_1}, t) + \vec{E_2}(\vec{r_2}, t)|^2
+&= \left|2\frac{\vec{E_0}}{r}\cos{\left( \frac{k\cdot r_1 + k\cdot r_2 - 2w\cdot t}{2} \right)} \cos{\left(\frac{k(r_1 - r_2)}{2}\right)}\right|^2 \\
+&= \frac{4E_0^2}{r^2}\left|\cos{\left(\frac{k(r_1 - r_2)}{2}\right)}\right|^2 \left|\cos{\left( \frac{k\cdot r_1 + k\cdot r_2 - 2w\cdot t}{2} \right)}\right|^2
+\end{align*}
+
+% Question 5 sub section 3
+\item
+\begin{align*}
+\left<|\vec{E_1}(\vec{r_1}, t) + \vec{E_2}(\vec{r_2}, t)|^2\right>
+&= \left<\frac{4E_0^2}{r^2}\left|\cos{\left(\frac{k(r_1 - r_2)}{2}\right)}\right|^2 \left|\cos{\left( \frac{k\cdot r_1 + k\cdot r_2 - 2w\cdot t}{2} \right)}\right|^2\right>\\
+&= \frac{4E_0^2}{r^2}\left|\cos{\left(\frac{k(r_1 - r_2)}{2}\right)}\right|^2 \left<\left|\cos{\left( \frac{k\cdot r_1 + k\cdot r_2 - 2w\cdot t}{2} \right)}\right|^2\right>\\
+&= \frac{4E_0^2}{r^2}\left|\cos{\left(\frac{k(r_1 - r_2)}{2}\right)}\right|^2 \frac{1}{2}
+\end{align*}
+
+% Question 5 sub section 4
+\item
+$$
+\boxed{I(\theta) = \frac{4E_0^2}{r^2}\left|\cos{\left(\frac{k\cos{\theta}}{2}\right)}\right|^2 \frac{1}{2}}
+$$
 
 \end{enumerate}
 
