@@ -1,0 +1,102 @@
+\documentclass[a4paper,10pt]{hw}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{tabularx}
+\usepackage{mathtools}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+% Bra-Ket hack from stack exchange
+\DeclarePairedDelimiter\bra{\langle}{\rvert}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}
+\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1 \delimsize\vert #2}
+
+% TabularX streched-centered column (Z)
+\newcolumntype{Z}{>{\vfill\centering\let\newline\\\arraybackslash\hspace{0pt}}X}
+
+%opening
+\title{Introduction to Quantum Information Processing}
+\author{Roei Rosenzweig 313590937,\\ Roey Maor 205798440}
+
+\begin{document}
+
+\maketitle
+
+\section{Harmonic Quantum Oscillator - Solution}
+
+\begin{enumerate}
+
+% Question 1 sub section 1
+\item
+\begin{flalign*}
+a + a^\dagger = 2\cdot X\cdot\sqrt\frac{m\omega}{2\hbar} \Rightarrow X = \sqrt{\frac{2\hbar}{m\omega}} \frac{a + a^\dagger}{2} &&& \\
+a - a^\dagger = 2\cdot \frac{i}{m\omega}P\cdot\sqrt\frac{m\omega}{2\hbar} \Rightarrow P = \sqrt{\frac{2\hbar}{m\omega}} \frac{m\omega}{i} \frac{a - a^\dagger}{2} &&&
+\end{flalign*}
+
+% Question 1 sub section 2
+\item
+
+We begin by calculating an expression for the operator $aa^\dagger$, by using $\left[X, P\right] = i\hbar$:
+
+\begin{align*}
+aa^\dagger &= \frac{m\omega}{2\hbar} \left(X^2 + \frac{i}{m\omega} PX - \frac{i}{m\omega} XP + \frac{1}{m^2 \omega^2} P^2\right)&& \\
+&= \frac{m\omega}{2\hbar} \left(X^2 -i\hbar \frac{i}{m\omega} + \frac{1}{m^2 \omega^2} P^2 \right) &&\\
+&= \frac{m\omega}{2\hbar} \left(X^2 + \frac{1}{m^2 \omega^2} P^2 \right) + \frac{m\omega}{2\hbar} \frac{h}{m\omega} = C + \frac{1}{2}
+\end{align*}
+
+From symmetry, we get that $a^\dagger a = C - \frac{1}{2} = N$, thus $aa^\dagger = N + 1$. Now we can calculate the hamiltonian:
+
+\begin{align*}
+{\cal{H}}  &= \frac{P^2}{2m} + \frac{1}{2}m\omega^2 X^2 = \frac{1}{2m} \left( \sqrt{\frac{2\hbar}{m\omega}} \frac{m\omega}{i} \frac{a - a^\dagger}{2} \right)^2 + \frac{1}{2} m\omega^2 \left( \sqrt{\frac{2\hbar}{m\omega}} \frac{a + a^\dagger}{2}\right)^2 && \\
+&= \frac{1}{2m} \frac{2\hbar}{m\omega} \frac{m^2\omega^2}{-1} \frac{a^2 -(N + 1) - N + \left(a^\dagger\right)^2}{4}
++
+\frac{1}{2}m\omega^2 \frac{2\hbar}{m\omega} \frac{a^2 + (N + 1) + N +\left(a^\dagger\right)^2}{4} && \\
+&= -\omega \hbar \frac{a^2 - (N + 1) - N + \left(a^\dagger\right)^2}{4} + \omega \hbar \frac{a^2 + (N + 1) + N + \left(a^\dagger\right)^2}{4} && \\
+&= \hbar\omega \frac{4N + 2}{4} = \hbar\omega \left(N + 1\right) &&
+\end{align*}
+
+
+
+\end{enumerate}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
