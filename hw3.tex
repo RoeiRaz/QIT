@@ -78,6 +78,25 @@ a \ket{1} &=& \sqrt{1} \ket{0}\\
 \end{align*}
 
 
+% Question 1 sub section 4
+\item
+
+Proof by induction. we claim that $\ket{n} = \frac{1}{\sqrt{n!}} \cdot \left( a^\dagger \right) ^n \cdot \ket{0}$ for $n \geq 0$.
+
+	\begin{itemize}
+	
+	\item base
+	for $n=0$ we get $\ket{0} = \frac{1}{\sqrt{0!}} \cdot \left( a^\dagger \right)^0 \cdot \ket{0} = \ket{0}$. 
+	
+	\item step
+	assume $\ket{n} = \frac{1}{\sqrt{n!}} \cdot \left( a^\dagger \right) ^n \cdot \ket{0}$ for some $n \geq 0$:
+	
+	\begin{align*}
+	\ket{n+1} &= \frac{1}{\sqrt{n+1}} a^\dagger \ket{n} = \frac{1}{\sqrt{n+1}} a^\dagger\cdot  \frac{1}{\sqrt{n!}} \cdot \left( a^\dagger \right) ^n \cdot \ket{0} = \frac{1}{\sqrt{n+1!}} \cdot \left( a^\dagger \right) ^{n+1} \cdot \ket{0}
+	\end{align*}
+	
+	\end{itemize}
+
 \end{enumerate}
 
 
