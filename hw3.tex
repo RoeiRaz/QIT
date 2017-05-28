@@ -99,6 +99,49 @@ Proof by induction. we claim that $\ket{n} = \frac{1}{\sqrt{n!}} \cdot \left( a^
 
 \end{enumerate}
 
+\section{State Classification - Solution}
+
+\begin{enumerate}
+
+% Question 2 sub section 1
+\item
+
+First, lets compute:
+
+$$
+\frac{\ket{00} + \ket{++} + \ket{--}}{\alpha} = \frac{1}{a}
+\left( 
+\begin{pmatrix}
+0 \\ 0 \\ 0 \\ 1
+\end{pmatrix}
++
+\begin{pmatrix}
+1 \\ 1 \\ 1 \\ 1
+\end{pmatrix}
++
+\begin{pmatrix}
+1 \\ -1 \\ -1 \\ 1
+\end{pmatrix}
+\right)
+=
+\frac{1}{\alpha}
+\begin{pmatrix}
+2 \\ 0 \\ 0 \\ 3
+\end{pmatrix}
+$$
+
+This state is pure (by definition - Its a vector in Hilbert space), and it is \textbf{entangled} - it can't be written as a tensor product of 2 vectors. Separable states must have the property $\alpha_{01}\alpha{10}=\alpha{00}\alpha{11}$, and in our case $0\cdot 0 \neq 3\cdot 2$.
+The norm of a pure state must be 1, and we can use this to calculate $\alpha$:
+
+\begin{align*}
+\frac{9}{\alpha^2} + \frac{4}{\alpha^2} &= 1 \\
+\alpha &= 13
+\end{align*}
+
+% Question 2 subsection 2
+\item
+
+\end{enumerate}
 
 \end{document}
 
