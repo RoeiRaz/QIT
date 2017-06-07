@@ -420,17 +420,40 @@ Universality - Implementation of CZ
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
+\begin_layout Enumerate
+A good guess might be: 
+\begin_inset Formula $CZ=\left(I_{2}\otimes H^{-1}\right)\cdot CNOT\cdot\left(I_{2}\otimes H\right)$
+\end_inset
 
-\begin_layout Plain Layout
-TODO
-\end_layout
+, where 
+\begin_inset Formula $H$
+\end_inset
+
+ is the hadamard trasformation (change of basis 
+\begin_inset Formula $\left\{ \left|0\right\rangle ,\left|1\right\rangle \right\} \to\left\{ \left|+\right\rangle ,\left|-\right\rangle \right\} $
+\end_inset
+
+.
+ Lets validate that these operators transform the 
+\begin_inset Formula $\left|ij\right\rangle $
+\end_inset
+
+ states correctly:
+\begin_inset Formula 
+\begin{align*}
+\left(I_{2}\otimes H^{-1}\right)\cdot CNOT\cdot\left(I_{2}\otimes H\right)\left|00\right\rangle  & =\left(I_{2}\otimes H^{-1}\right)\cdot CNOT\cdot\left(\left|0\right\rangle \otimes\left|+\right\rangle \right)=\left(I_{2}\otimes H^{-1}\right)\left(\left|0\right\rangle \otimes\left|+\right\rangle \right)=\left|00\right\rangle \\
+\left(I_{2}\otimes H^{-1}\right)\cdot CNOT\cdot\left(I_{2}\otimes H\right)\left|10\right\rangle  & =\left(I_{2}\otimes H^{-1}\right)\cdot CNOT\cdot\left(\left|1\right\rangle \otimes\left|+\right\rangle \right)=\left(I_{2}\otimes H^{-1}\right)\left(\left|1\right\rangle \otimes\left|+\right\rangle \right)=\left|10\right\rangle \\
+\left(I_{2}\otimes H^{-1}\right)\cdot CNOT\cdot\left(I_{2}\otimes H\right)\left|01\right\rangle  & =\left(I_{2}\otimes H^{-1}\right)\cdot CNOT\cdot\left(\left|0\right\rangle \otimes\left|-\right\rangle \right)=\left(I_{2}\otimes H^{-1}\right)\left(\left|0\right\rangle \otimes\left|-\right\rangle \right)=\left|01\right\rangle \\
+\left(I_{2}\otimes H^{-1}\right)\cdot CNOT\cdot\left(I_{2}\otimes H\right)\left|11\right\rangle  & =\left(I_{2}\otimes H^{-1}\right)\cdot CNOT\cdot\left(\left|1\right\rangle \otimes\left|-\right\rangle \right)=\left(I_{2}\otimes H^{-1}\right)\cdot\left(\left|1\right\rangle \otimes\left(-\left|-\right\rangle \right)\right)=\left(\left|1\right\rangle \otimes\left(-\left|1\right\rangle \right)\right)
+\end{align*}
 
 \end_inset
 
+It does seems consistant with 
+\begin_inset Formula $CZ$
+\end_inset
 
+.
 \end_layout
 
 \begin_layout Section
@@ -486,7 +509,7 @@ IFF
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $r_{i-1}|a$
+\begin_inset Formula $a|r_{i-1}$
 \end_inset
 
  (
@@ -498,7 +521,7 @@ IFF
 \end_inset
 
 ) and 
-\begin_inset Formula $\left(r_{i-1}\cdot d+r_{i-2}\right)|a$
+\begin_inset Formula $a|\left(r_{i-1}\cdot d+r_{i-2}\right)$
 \end_inset
 
  and no 
@@ -597,11 +620,11 @@ IFF
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $r_{i-1}|a$
+\begin_inset Formula $a|r_{i-1}$
 \end_inset
 
 , 
-\begin_inset Formula $r_{i-2}|a$
+\begin_inset Formula $a|r_{i-2}$
 \end_inset
 
  and no 
@@ -626,6 +649,378 @@ To conclude, we get
 \end_inset
 
 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+For some integer 
+\begin_inset Formula $x\geq0$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $x|x$
+\end_inset
+
+ and 
+\begin_inset Formula $x|0$
+\end_inset
+
+ (because 
+\begin_inset Formula $1\cdot x=x$
+\end_inset
+
+ and 
+\begin_inset Formula $0\cdot x=0$
+\end_inset
+
+....)
+\end_layout
+
+\begin_layout Enumerate
+for 
+\begin_inset Formula $y>x$
+\end_inset
+
+, 
+\begin_inset Formula $y\nmid x$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Then by definition, 
+\begin_inset Formula $gcd\left(x,0\right)=x$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+We prove the algorithm is 
+\series bold
+correct
+\series default
+ (ends & yields the right result) by 
+\series bold
+3
+\series default
+ claims:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+At each iteration of the algorithm (for any 
+\begin_inset Formula $i$
+\end_inset
+
+) it holds that 
+\begin_inset Formula $\gcd\left(r_{i-1},r_{i-2}\right)=\gcd\left(r_{0},r_{1}\right)$
+\end_inset
+
+.
+ Proof: by induction.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+base
+\series default
+: for 
+\begin_inset Formula $i=2$
+\end_inset
+
+ its an identity.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+step
+\series default
+: if we assume 
+\begin_inset Formula $\gcd\left(r_{i-2},r_{i-3}\right)=\gcd\left(r_{0},r_{1}\right)$
+\end_inset
+
+, then by the claim from section (1) we get 
+\begin_inset Formula $\gcd\left(r_{i-1},r_{i-2}\right)=\gcd\left(r_{0},r_{1}\right)$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The algorithm 
+\series bold
+stops
+\series default
+ eventually.
+ We show this by prooving an upper bound 
+\begin_inset Formula $r_{i-1}\leq r_{1}-i+2$
+\end_inset
+
+.
+ Proof: by induction.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+base
+\series default
+: for 
+\begin_inset Formula $i=2$
+\end_inset
+
+ its trivial.
+ (😉)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+step
+\series default
+: Assume 
+\begin_inset Formula $r_{i-2}\leq r_{1}-\left(i-1\right)+2$
+\end_inset
+
+.
+ (notice: we changed the variable name).
+ 
+\begin_inset Formula $r_{i-1}$
+\end_inset
+
+ is computed, according to the algorithm, by 
+\begin_inset Formula $r_{i-1}=r_{i-3}\left(\mod r_{i-2}\right)$
+\end_inset
+
+.
+ this means that 
+\begin_inset Formula $r_{i-1}<r_{i-2}$
+\end_inset
+
+, and because we are handling integers, 
+\begin_inset Formula $r_{i-1}\leq r_{i-2}-1$
+\end_inset
+
+.
+ Plugging it together, we get 
+\begin_inset Formula $r_{i-1}\leq r_{1}-i+2$
+\end_inset
+
+.
+ Eventually, we reach 
+\begin_inset Formula $i$
+\end_inset
+
+ big enough so that 
+\begin_inset Formula $r_{i-1}\leq0$
+\end_inset
+
+, and the algorithm stops and returns 
+\begin_inset Formula $r_{i-2}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The algorithm returns the correct result.
+ Proof: We know from claim (b) that the algorithm reachs 
+\begin_inset Formula $i$
+\end_inset
+
+ s.t.
+ 
+\begin_inset Formula $r_{i-1}=0$
+\end_inset
+
+.
+ We also know, from claim (a), that for this 
+\begin_inset Formula $i$
+\end_inset
+
+ it holds 
+\begin_inset Formula $\gcd\left(0,r_{i-2}\right)=\gcd\left(r_{0},r_{0}\right)$
+\end_inset
+
+.
+ From section (2), we know that 
+\begin_inset Formula $\gcd\left(0,r_{i-2}\right)=r_{i-2}$
+\end_inset
+
+.
+ Conclusion: The algorithm 
+\series bold
+stops
+\series default
+ at certain 
+\begin_inset Formula $i$
+\end_inset
+
+, and returns 
+\begin_inset Formula $r_{i-2}=\gcd\left(r_{0},r_{1}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\blacksquare$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+We start by making a helpful claim:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $r_{i}<r_{i-1}<r_{i-2}$
+\end_inset
+
+ for any 
+\begin_inset Formula $i>2$
+\end_inset
+
+.
+ Proof: we know that 
+\begin_inset Formula $r_{i}<r_{i-1}$
+\end_inset
+
+, because 
+\begin_inset Formula $r_{i}=r_{i-2}\left(\mod r_{i-1}\right)$
+\end_inset
+
+.
+ In a similar way, 
+\begin_inset Formula $r_{i-1}<r_{i-2}$
+\end_inset
+
+ because 
+\begin_inset Formula $r_{i-1}=r_{i-3}\left(\mod r_{i-2}\right)$
+\end_inset
+
+.
+ (This is why we require 
+\begin_inset Formula $i>2$
+\end_inset
+
+ and not 
+\begin_inset Formula $i\geq2$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Now, recall that for 
+\begin_inset Formula $i>2$
+\end_inset
+
+, 
+\begin_inset Formula $r_{i}=r_{i-2}\mod\left(r_{i-1}\right)$
+\end_inset
+
+, which means that for some integer 
+\begin_inset Formula $q$
+\end_inset
+
+, we can write 
+\begin_inset Formula $r_{i-2}=q\cdot r_{i-1}+r_{i}$
+\end_inset
+
+.
+ From the helpful claim, we know that 
+\begin_inset Formula $r_{i}<r_{i-2}$
+\end_inset
+
+, so 
+\begin_inset Formula $q\cdot r_{i-1}>0$
+\end_inset
+
+.
+ More specifically, 
+\begin_inset Formula $q\geq1$
+\end_inset
+
+.
+ So we infer the following in-equality: 
+\begin_inset Formula $r_{i-2}\geq r_{i-1}+r_{i}$
+\end_inset
+
+.
+ By using 
+\begin_inset Formula $r_{i}<r_{i-1}$
+\end_inset
+
+, we can upgrade our in-equality to 
+\begin_inset Formula $r_{i-2}>2\cdot r_{i}$
+\end_inset
+
+, which is essentialy 
+\begin_inset Formula $\boxed{r_{i}<\frac{r_{i-2}}{2}}$
+\end_inset
+
+.
+ This proves that the algorithm perfoms 
+\series bold
+at most
+\series default
+ 
+\begin_inset Formula $1+2\log_{2}\left(r_{1}+r_{0}\right)$
+\end_inset
+
+ iterations: it must hold that 
+\begin_inset Formula $r_{i-1}>0$
+\end_inset
+
+ for any iteration (except the last).
+ if 
+\begin_inset Formula $r_{i-1}<\frac{r_{i-3}}{2}$
+\end_inset
+
+, then 
+\begin_inset Formula $r_{i-1}<\frac{1}{2^{i/2}}\left(r_{1}+r_{0}\right)$
+\end_inset
+
+.
+ Thus, for 
+\begin_inset Formula $r_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $r_{1}$
+\end_inset
+
+ of lengths (number of bits) 
+\begin_inset Formula $b_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $b_{1}$
+\end_inset
+
+, the maximum number of iterations is 
+\begin_inset Formula $\sim1+2\left(b_{0}+b_{1}\right)$
+\end_inset
+
+.
+ (Note: its not a tight bound, only approximate upper bound).
 \end_layout
 
 \end_deeper
