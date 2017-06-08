@@ -26,10 +26,11 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
-\paperfontsize default
+\paperfontsize 10
+\spacing single
 \use_hyperref false
 \papersize default
-\use_geometry false
+\use_geometry true
 \use_package amsmath 1
 \use_package amssymb 1
 \use_package cancel 1
@@ -53,6 +54,10 @@
 \shortcut idx
 \color #008000
 \end_index
+\leftmargin 1cm
+\topmargin 1cm
+\rightmargin 1cm
+\bottommargin 2cm
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
@@ -69,6 +74,30 @@
 \end_header
 
 \begin_body
+
+\begin_layout Title
+Quantum Information - Homework 04
+\end_layout
+
+\begin_layout Author
+Roei Rosenzweig 313590937 ◊ 205798440 Roey Maor
+\end_layout
+
+\begin_layout Date
+06/08/2017
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Section
 Purity of qubit
@@ -121,7 +150,7 @@ a+d=1
 \end_layout
 
 \begin_layout Enumerate
-eigen-values are non-negative.
+eigenvalues are non-negative.
  from the previous 2 conditions we can represent 
 \begin_inset Formula $p=\begin{pmatrix}a & b\\
 b^{\star} & 1-a
@@ -325,10 +354,6 @@ purity
 
 \end_inset
 
-
-\series bold
-rotate
-\series default
 For a 
 \series bold
 pure
@@ -337,12 +362,12 @@ pure
 \begin_inset Formula $\left|\vec{r}\right|=1$
 \end_inset
 
- - the state in sitting on the surface on poincare sphere.
+ - the state is sitting on the surface on Poincare sphere.
  From that, and from the presentation of 
 \begin_inset Formula $\gamma$
 \end_inset
 
- that we calculated before, we arrive to the conclusion that for pure state
+ that we calculated before, we arrive to the conclusion that for pure states
  
 \begin_inset Formula $\gamma=1$
 \end_inset
@@ -352,11 +377,11 @@ pure
 
 \begin_deeper
 \begin_layout Standard
-For the completly-mixed state 
+For the completely-mixed state 
 \begin_inset Formula $p'=\frac{I}{2}$
 \end_inset
 
-, the representing-vector in poincare sphere points exactly at the middle.
+, the representing-vector in Poincare sphere points exactly at the middle.
  In other words, 
 \begin_inset Formula $\left|\vec{r}\right|=0$
 \end_inset
@@ -374,26 +399,31 @@ For any unitary operator
 \begin_inset Formula $U$
 \end_inset
 
+ and density matrix 
+\begin_inset Formula $p$
+\end_inset
+
 , 
-\begin_inset Formula $\left(U\cdot p\right)^{2}=p^{*}U^{*}Up=p^{2}$
+\begin_inset Formula $\left(U\cdot p\cdot U^{*}\right)^{2}=U\cdot p^{2}\cdot U^{*}$
 \end_inset
 
 .
  Then, the purity of the state 
-\begin_inset Formula $U\cdot p$
+\begin_inset Formula $U\cdot p\cdot U^{*}$
 \end_inset
 
  is 
-\begin_inset Formula $\gamma_{\left(U\cdot p\right)}=tr\left(\left(U\cdot p\right)^{2}\right)=tr\left(p^{2}\right)=\gamma_{p}$
+\begin_inset Formula $\gamma_{\left(U\cdot p\cdot U^{*}\right)}=tr\left(U\cdot p^{2}\cdot U^{*}\right)=tr\left(p^{2}\right)=\gamma_{p}$
 \end_inset
 
-.
+ (the 2nd equality is justified because trace is preserved under change
+ of basis).
  We learn that the purity is preserved under unitary operators.
  because the purity is linear in 
 \begin_inset Formula $\left|\vec{r}\right|^{2}$
 \end_inset
 
-, we that also conclude that 
+, we also conclude that 
 \begin_inset Formula $\left|\vec{r}\right|$
 \end_inset
 
@@ -402,7 +432,7 @@ For any unitary operator
 \series bold
 rotate
 \series default
- the poincare vector.
+ the Poincare vector.
 \end_layout
 
 \begin_layout Section
@@ -429,7 +459,7 @@ A good guess might be:
 \begin_inset Formula $H$
 \end_inset
 
- is the hadamard trasformation (change of basis 
+ is the hadamard transformation (change of basis 
 \begin_inset Formula $\left\{ \left|0\right\rangle ,\left|1\right\rangle \right\} \to\left\{ \left|+\right\rangle ,\left|-\right\rangle \right\} $
 \end_inset
 
@@ -438,18 +468,44 @@ A good guess might be:
 \begin_inset Formula $\left|ij\right\rangle $
 \end_inset
 
- states correctly:
+ states correctly
+\size tiny
+
 \begin_inset Formula 
 \begin{align*}
-\left(I_{2}\otimes H^{-1}\right)\cdot CNOT\cdot\left(I_{2}\otimes H\right)\left|00\right\rangle  & =\left(I_{2}\otimes H^{-1}\right)\cdot CNOT\cdot\left(\left|0\right\rangle \otimes\left|+\right\rangle \right)=\left(I_{2}\otimes H^{-1}\right)\left(\left|0\right\rangle \otimes\left|+\right\rangle \right)=\left|00\right\rangle \\
-\left(I_{2}\otimes H^{-1}\right)\cdot CNOT\cdot\left(I_{2}\otimes H\right)\left|10\right\rangle  & =\left(I_{2}\otimes H^{-1}\right)\cdot CNOT\cdot\left(\left|1\right\rangle \otimes\left|+\right\rangle \right)=\left(I_{2}\otimes H^{-1}\right)\left(\left|1\right\rangle \otimes\left|+\right\rangle \right)=\left|10\right\rangle \\
-\left(I_{2}\otimes H^{-1}\right)\cdot CNOT\cdot\left(I_{2}\otimes H\right)\left|01\right\rangle  & =\left(I_{2}\otimes H^{-1}\right)\cdot CNOT\cdot\left(\left|0\right\rangle \otimes\left|-\right\rangle \right)=\left(I_{2}\otimes H^{-1}\right)\left(\left|0\right\rangle \otimes\left|-\right\rangle \right)=\left|01\right\rangle \\
-\left(I_{2}\otimes H^{-1}\right)\cdot CNOT\cdot\left(I_{2}\otimes H\right)\left|11\right\rangle  & =\left(I_{2}\otimes H^{-1}\right)\cdot CNOT\cdot\left(\left|1\right\rangle \otimes\left|-\right\rangle \right)=\left(I_{2}\otimes H^{-1}\right)\cdot\left(\left|1\right\rangle \otimes\left(-\left|-\right\rangle \right)\right)=\left(\left|1\right\rangle \otimes\left(-\left|1\right\rangle \right)\right)
+\begin{pmatrix}\nicefrac{1}{\sqrt{2}} & \nicefrac{1}{\sqrt{2}} & 0 & 0\\
+\nicefrac{1}{\sqrt{2}} & -\nicefrac{1}{\sqrt{2}} & 0 & 0\\
+0 & 0 & \nicefrac{1}{\sqrt{2}} & \nicefrac{1}{\sqrt{2}}\\
+0 & 0 & \nicefrac{1}{\sqrt{2}} & -\nicefrac{1}{\sqrt{2}}
+\end{pmatrix}\begin{pmatrix}1 & 0 & 0 & 0\\
+0 & 1 & 0 & 0\\
+0 & 0 & 0 & 1\\
+0 & 0 & 1 & 0
+\end{pmatrix}\begin{pmatrix}\nicefrac{1}{\sqrt{2}} & \nicefrac{1}{\sqrt{2}} & 0 & 0\\
+\nicefrac{1}{\sqrt{2}} & -\nicefrac{1}{\sqrt{2}} & 0 & 0\\
+0 & 0 & \nicefrac{1}{\sqrt{2}} & \nicefrac{1}{\sqrt{2}}\\
+0 & 0 & \nicefrac{1}{\sqrt{2}} & -\nicefrac{1}{\sqrt{2}}
+\end{pmatrix}=\begin{pmatrix}\nicefrac{1}{\sqrt{2}} & \nicefrac{1}{\sqrt{2}} & 0 & 0\\
+\nicefrac{1}{\sqrt{2}} & -\nicefrac{1}{\sqrt{2}} & 0 & 0\\
+0 & 0 & \nicefrac{1}{\sqrt{2}} & \nicefrac{1}{\sqrt{2}}\\
+0 & 0 & \nicefrac{1}{\sqrt{2}} & -\nicefrac{1}{\sqrt{2}}
+\end{pmatrix}\begin{pmatrix}\nicefrac{1}{\sqrt{2}} & \nicefrac{1}{\sqrt{2}} & 0 & 0\\
+\nicefrac{1}{\sqrt{2}} & -\nicefrac{1}{\sqrt{2}} & 0 & 0\\
+0 & 0 & \nicefrac{1}{\sqrt{2}} & -\nicefrac{1}{\sqrt{2}}\\
+0 & 0 & \nicefrac{1}{\sqrt{2}} & \nicefrac{1}{\sqrt{2}}
+\end{pmatrix}\\
+=\begin{pmatrix}1 & 0 & 0 & 0\\
+0 & 1 & 0 & 0\\
+0 & 0 & 1 & 0\\
+0 & 0 & 0 & -1
+\end{pmatrix}=CZ
 \end{align*}
 
 \end_inset
 
-It does seems consistant with 
+
+\size default
+It does seems consistent with 
 \begin_inset Formula $CZ$
 \end_inset
 
@@ -460,12 +516,331 @@ It does seems consistant with
 Universality - Implementation of operator for 2 basic vectors
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
+\begin_layout Enumerate
+\begin_inset Formula $V=\frac{1}{\sqrt{2}}\begin{pmatrix}1 & 1\\
+1 & -1
+\end{pmatrix}$
+\end_inset
+
+.
+ This is the hadamard transformation matrix of rank 2 
+\begin_inset Formula $H_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $c-V$
+\end_inset
+
+ can be represented in a straight-forward way (similar to 
+\begin_inset Formula $CNOT$
+\end_inset
+
+):
+\begin_inset Formula 
+\[
+c-V=\begin{pmatrix}1 & 0 & \vec{0}\\
+0 & 1 & \vec{0}\\
+\vec{0} & \vec{0} & V
+\end{pmatrix}=\begin{pmatrix}1 & 0 & 0 & 0\\
+0 & 1 & 0 & 0\\
+0 & 0 & \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}\\
+0 & 0 & \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+\end{pmatrix}
+\]
+
+\end_inset
+
+We offer the following permutation: 
+\begin_inset Formula $A:\left|00\right\rangle \to\left|10\right\rangle \to\left|00\right\rangle $
+\end_inset
+
+.
+ It makes sense because it transform 
+\begin_inset Formula $\left|00\right\rangle ,\left|11\right\rangle $
+\end_inset
+
+ to 
+\begin_inset Formula $\left|10\right\rangle ,\left|11\right\rangle $
+\end_inset
+
+, which are not-trivially transformed by 
+\begin_inset Formula $c-V$
+\end_inset
+
+.
+\begin_inset Formula 
+\[
+A=\begin{pmatrix}0 & 0 & 1 & 0\\
+0 & 1 & 0 & 0\\
+1 & 0 & 0 & 0\\
+0 & 0 & 0 & 1
+\end{pmatrix}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Lets try 
+\begin_inset Formula $U=A\cdot\left(c-V\right)\cdot A$
+\end_inset
+
+.
+ (transform 
+\begin_inset Formula $\left|00\right\rangle ,\left|11\right\rangle $
+\end_inset
+
+ to 
+\begin_inset Formula $\left|10\right\rangle ,\left|11\right\rangle $
+\end_inset
+
+, apply 
+\begin_inset Formula $c-V$
+\end_inset
+
+, and permute everything back.
+ notice that 
+\begin_inset Formula $A^{-1}=A$
+\end_inset
+
+, the permutation is of rank 2).
+\size tiny
+
+\begin_inset Formula 
+\[
+A^{3}\cdot\left(c-V\right)\cdot A=\begin{pmatrix}0 & 0 & 1 & 0\\
+0 & 1 & 0 & 0\\
+1 & 0 & 0 & 0\\
+0 & 0 & 0 & 1
+\end{pmatrix}\begin{pmatrix}1 & 0 & 0 & 0\\
+0 & 1 & 0 & 0\\
+0 & 0 & \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}\\
+0 & 0 & \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+\end{pmatrix}\begin{pmatrix}0 & 0 & 1 & 0\\
+0 & 1 & 0 & 0\\
+1 & 0 & 0 & 0\\
+0 & 0 & 0 & 1
+\end{pmatrix}=\begin{pmatrix}0 & 0 & 1 & 0\\
+0 & 1 & 0 & 0\\
+1 & 0 & 0 & 0\\
+0 & 0 & 0 & 1
+\end{pmatrix}\begin{pmatrix}0 & 0 & 1 & 0\\
+0 & 1 & 0 & 0\\
+\frac{1}{\sqrt{2}} & 0 & 0 & \frac{1}{\sqrt{2}}\\
+\frac{1}{\sqrt{2}} & 0 & 0 & -\frac{1}{\sqrt{2}}
+\end{pmatrix}=\begin{pmatrix}\frac{1}{\sqrt{2}} & 0 & 0 & \frac{1}{\sqrt{2}}\\
+0 & 1 & 0 & 0\\
+0 & 0 & 1 & 0\\
+\frac{1}{\sqrt{2}} & 0 & 0 & -\frac{1}{\sqrt{2}}
+\end{pmatrix}=U
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Lets first prove a helpful claim: 
+\begin_inset Formula $CNOT$
+\end_inset
+
+ operates on the base 
+\begin_inset Formula $\left\{ -,+\right\} $
+\end_inset
+
+ as a controlled-not, but where the right bit is the control and the left
+ is the values:
+\begin_inset Formula 
+\begin{align*}
+CNOT\cdot\left|-+\right\rangle  & =CNOT\circ\frac{1}{2}\begin{pmatrix}1\\
+-1\\
+1\\
+-1
+\end{pmatrix}=\frac{1}{2}\begin{pmatrix}1\\
+-1\\
+-1\\
+1
+\end{pmatrix}=\left|++\right\rangle \\
+CNOT\cdot\left|++\right\rangle  & =CNOT\circ\frac{1}{2}\begin{pmatrix}1\\
+-1\\
+-1\\
+1
+\end{pmatrix}=\frac{1}{2}\begin{pmatrix}1\\
+-1\\
+1\\
+-1
+\end{pmatrix}=\left|-+\right\rangle \\
+CNOT\cdot\left|--\right\rangle  & =CNOT\circ\frac{1}{2}\begin{pmatrix}1\\
+1\\
+1\\
+1
+\end{pmatrix}=\left|--\right\rangle \\
+CNOT\cdot\left|+-\right\rangle  & =CNOT\circ\frac{1}{2}\begin{pmatrix}1\\
+1\\
+-1\\
+-1
+\end{pmatrix}=\left|+-\right\rangle 
+\end{align*}
+
+\end_inset
+
+The operator 
+\begin_inset Formula $A$
+\end_inset
+
+ is just a 
+\begin_inset Formula $CNOT$
+\end_inset
+
+ where the inputs are flipped (the right bit is control) and the control
+ arms the gate when its 
+\begin_inset Formula $\left|0\right\rangle $
+\end_inset
+
+, not 
+\begin_inset Formula $\left|1\right\rangle $
+\end_inset
+
+.
+ Using this fact, and the claim we saw earlier, we can do the following:
+\begin_inset Formula 
+\[
+A=\left(I_{2}\otimes\sigma_{x}\right)\circ\left(H_{2}\otimes I_{2}\right)\circ\left(I_{2}\otimes H_{2}\right)\circ CNOT\circ\left(H_{2}\otimes I_{2}\right)\circ\left(I_{2}\otimes H_{2}\right)\circ\left(I_{2}\otimes\sigma_{x}\right)
+\]
+
+\end_inset
+
+In this formula, 
+\begin_inset Formula $\left(H_{2}\otimes I_{2}\right)\circ\left(I_{2}\otimes H_{2}\right)\circ CNOT\circ\left(H_{2}\otimes I_{2}\right)\circ\left(I_{2}\otimes H_{2}\right)$
+\end_inset
+
+ is a 
+\begin_inset Formula $CNOT$
+\end_inset
+
+ gates with the control bit as the right bit (because we apply 
+\begin_inset Formula $CNOT$
+\end_inset
+
+ after change of basis to 
+\begin_inset Formula $\left\{ +-\right\} $
+\end_inset
+
+), and we wrap it with a NOT of the right bit to switch the control bit
+ behaviour.
+ To be extra safe, 
+\series bold
+we ran the numbers
+\series default
+ in Octave:
+\begin_inset Float figure
+placement H
+wide false
+sideways false
 status open
 
 \begin_layout Plain Layout
-TODO
+\align center
+\begin_inset Graphics
+	filename ran_the_numbers.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Octave validation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+If we find 
+\begin_inset Formula $U_{1,2}$
+\end_inset
+
+ unitary matrices s.t.
+ 
+\begin_inset Formula $V=U_{1}\sigma_{x}U_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $U_{1}U_{2}=I$
+\end_inset
+
+, we also find 
+\begin_inset Formula $c-V=\left(I_{2}\otimes U_{1}\right)\circ CNOT\circ\left(I_{2}\otimes U_{2}\right)$
+\end_inset
+
+.
+ Lets think in terms of rotation: Let 
+\begin_inset Formula $U_{2}=Rot\left(\frac{3\pi}{2}+\frac{3}{4}\frac{\pi}{2}\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $U_{1}=Rot\left(\frac{3\pi}{2}+\frac{1}{4}\frac{\pi}{2}\right)$
+\end_inset
+
+.
+ Indeed, 
+\begin_inset Formula $U_{1}U_{2}=Rot\left(2\pi\right)=I$
+\end_inset
+
+.
+ Now, lets see what 
+\begin_inset Formula $U_{1}\sigma_{x}U_{2}$
+\end_inset
+
+ does to the states 
+\begin_inset Formula $\left|0\right\rangle $
+\end_inset
+
+ and 
+\begin_inset Formula $\left|1\right\rangle $
+\end_inset
+
+, graphically:
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /home/roei/Desktop/U1U2full.jpg
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \end_inset
@@ -474,7 +849,7 @@ TODO
 \end_layout
 
 \begin_layout Section
-Euclides Algorithm
+Euclid’s Algorithm
 \end_layout
 
 \begin_layout Enumerate
@@ -763,7 +1138,7 @@ The algorithm
 stops
 \series default
  eventually.
- We show this by prooving an upper bound 
+ We show this by proving an upper bound 
 \begin_inset Formula $r_{i-1}\leq r_{1}-i+2$
 \end_inset
 
@@ -781,8 +1156,7 @@ base
 \begin_inset Formula $i=2$
 \end_inset
 
- its trivial.
- (😉)
+ its an equality.
 \end_layout
 
 \begin_layout Itemize
