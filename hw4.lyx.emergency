@@ -26,11 +26,10 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
-\paperfontsize 10
-\spacing single
+\paperfontsize default
 \use_hyperref false
 \papersize default
-\use_geometry true
+\use_geometry false
 \use_package amsmath 1
 \use_package amssymb 1
 \use_package cancel 1
@@ -54,10 +53,6 @@
 \shortcut idx
 \color #008000
 \end_index
-\leftmargin 1cm
-\topmargin 1cm
-\rightmargin 1cm
-\bottommargin 2cm
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
@@ -80,23 +75,11 @@ Quantum Information - Homework 04
 \end_layout
 
 \begin_layout Author
-Roei Rosenzweig 313590937 ◊ 205798440 Roey Maor
+Roei Rosenzweig 313590937 ◊ Roey Maor 133782001
 \end_layout
 
 \begin_layout Date
 06/08/2017
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset line
-LatexCommand rule
-offset "0.5ex"
-width "100col%"
-height "1pt"
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Section
@@ -469,8 +452,6 @@ A good guess might be:
 \end_inset
 
  states correctly
-\size tiny
-
 \begin_inset Formula 
 \begin{align*}
 \begin{pmatrix}\nicefrac{1}{\sqrt{2}} & \nicefrac{1}{\sqrt{2}} & 0 & 0\\
@@ -493,8 +474,7 @@ A good guess might be:
 \nicefrac{1}{\sqrt{2}} & -\nicefrac{1}{\sqrt{2}} & 0 & 0\\
 0 & 0 & \nicefrac{1}{\sqrt{2}} & -\nicefrac{1}{\sqrt{2}}\\
 0 & 0 & \nicefrac{1}{\sqrt{2}} & \nicefrac{1}{\sqrt{2}}
-\end{pmatrix}\\
-=\begin{pmatrix}1 & 0 & 0 & 0\\
+\end{pmatrix}=\begin{pmatrix}1 & 0 & 0 & 0\\
 0 & 1 & 0 & 0\\
 0 & 0 & 1 & 0\\
 0 & 0 & 0 & -1
@@ -503,8 +483,6 @@ A good guess might be:
 
 \end_inset
 
-
-\size default
 It does seems consistent with 
 \begin_inset Formula $CZ$
 \end_inset
@@ -609,8 +587,6 @@ Lets try
 \end_inset
 
 , the permutation is of rank 2).
-\size tiny
-
 \begin_inset Formula 
 \[
 A^{3}\cdot\left(c-V\right)\cdot A=\begin{pmatrix}0 & 0 & 1 & 0\\
@@ -639,200 +615,6 @@ A^{3}\cdot\left(c-V\right)\cdot A=\begin{pmatrix}0 & 0 & 1 & 0\\
 \frac{1}{\sqrt{2}} & 0 & 0 & -\frac{1}{\sqrt{2}}
 \end{pmatrix}=U
 \]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-Lets first prove a helpful claim: 
-\begin_inset Formula $CNOT$
-\end_inset
-
- operates on the base 
-\begin_inset Formula $\left\{ -,+\right\} $
-\end_inset
-
- as a controlled-not, but where the right bit is the control and the left
- is the values:
-\begin_inset Formula 
-\begin{align*}
-CNOT\cdot\left|-+\right\rangle  & =CNOT\circ\frac{1}{2}\begin{pmatrix}1\\
--1\\
-1\\
--1
-\end{pmatrix}=\frac{1}{2}\begin{pmatrix}1\\
--1\\
--1\\
-1
-\end{pmatrix}=\left|++\right\rangle \\
-CNOT\cdot\left|++\right\rangle  & =CNOT\circ\frac{1}{2}\begin{pmatrix}1\\
--1\\
--1\\
-1
-\end{pmatrix}=\frac{1}{2}\begin{pmatrix}1\\
--1\\
-1\\
--1
-\end{pmatrix}=\left|-+\right\rangle \\
-CNOT\cdot\left|--\right\rangle  & =CNOT\circ\frac{1}{2}\begin{pmatrix}1\\
-1\\
-1\\
-1
-\end{pmatrix}=\left|--\right\rangle \\
-CNOT\cdot\left|+-\right\rangle  & =CNOT\circ\frac{1}{2}\begin{pmatrix}1\\
-1\\
--1\\
--1
-\end{pmatrix}=\left|+-\right\rangle 
-\end{align*}
-
-\end_inset
-
-The operator 
-\begin_inset Formula $A$
-\end_inset
-
- is just a 
-\begin_inset Formula $CNOT$
-\end_inset
-
- where the inputs are flipped (the right bit is control) and the control
- arms the gate when its 
-\begin_inset Formula $\left|0\right\rangle $
-\end_inset
-
-, not 
-\begin_inset Formula $\left|1\right\rangle $
-\end_inset
-
-.
- Using this fact, and the claim we saw earlier, we can do the following:
-\begin_inset Formula 
-\[
-A=\left(I_{2}\otimes\sigma_{x}\right)\circ\left(H_{2}\otimes I_{2}\right)\circ\left(I_{2}\otimes H_{2}\right)\circ CNOT\circ\left(H_{2}\otimes I_{2}\right)\circ\left(I_{2}\otimes H_{2}\right)\circ\left(I_{2}\otimes\sigma_{x}\right)
-\]
-
-\end_inset
-
-In this formula, 
-\begin_inset Formula $\left(H_{2}\otimes I_{2}\right)\circ\left(I_{2}\otimes H_{2}\right)\circ CNOT\circ\left(H_{2}\otimes I_{2}\right)\circ\left(I_{2}\otimes H_{2}\right)$
-\end_inset
-
- is a 
-\begin_inset Formula $CNOT$
-\end_inset
-
- gates with the control bit as the right bit (because we apply 
-\begin_inset Formula $CNOT$
-\end_inset
-
- after change of basis to 
-\begin_inset Formula $\left\{ +-\right\} $
-\end_inset
-
-), and we wrap it with a NOT of the right bit to switch the control bit
- behaviour.
- To be extra safe, 
-\series bold
-we ran the numbers
-\series default
- in Octave:
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename ran_the_numbers.png
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Octave validation
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-If we find 
-\begin_inset Formula $U_{1,2}$
-\end_inset
-
- unitary matrices s.t.
- 
-\begin_inset Formula $V=U_{1}\sigma_{x}U_{2}$
-\end_inset
-
- and 
-\begin_inset Formula $U_{1}U_{2}=I$
-\end_inset
-
-, we also find 
-\begin_inset Formula $c-V=\left(I_{2}\otimes U_{1}\right)\circ CNOT\circ\left(I_{2}\otimes U_{2}\right)$
-\end_inset
-
-.
- Lets think in terms of rotation: Let 
-\begin_inset Formula $U_{2}=Rot\left(\pi+\frac{1}{4}\frac{\pi}{2}\right)$
-\end_inset
-
- and 
-\begin_inset Formula $U_{1}=Rot\left(\frac{\pi}{2}+\frac{3}{4}\frac{\pi}{2}\right)$
-\end_inset
-
-.
- Indeed, 
-\begin_inset Formula $U_{1}U_{2}=Rot\left(2\pi\right)=I$
-\end_inset
-
-.
- Now, lets see what 
-\begin_inset Formula $U_{1}\sigma_{x}U_{2}$
-\end_inset
-
- does to the states 
-\begin_inset Formula $\left|0\right\rangle $
-\end_inset
-
- and 
-\begin_inset Formula $\left|1\right\rangle $
-\end_inset
-
-, where 
-\begin_inset Formula $\theta\left(\alpha\right)=\begin{pmatrix}\cos\alpha\\
-\sin\alpha
-\end{pmatrix}$
-\end_inset
-
-:
-\begin_inset Formula 
-\begin{align*}
- & U_{1}\sigma_{x}U_{2}\cdot\left|0\right\rangle =U_{1}\sigma_{x}U_{2}\cdot\theta\left(0\right)=U_{1}\sigma_{x}\cdot\theta\left(\pi+\frac{1}{4}\frac{\pi}{2}\right)=U_{1}\cdot\theta\left(\pi+\frac{3}{4}\frac{\pi}{2}\right)=\theta\left(\frac{1}{2}\frac{\pi}{2}\right)=\frac{1}{\sqrt{2}}\begin{pmatrix}1\\
-1
-\end{pmatrix}=\left|-\right\rangle =V\cdot\left|0\right\rangle  & \,\\
- & U_{1}\sigma_{x}U_{2}\cdot\left|0\right\rangle =U_{1}\sigma_{x}U_{2}\cdot\theta\left(\frac{\pi}{2}\right)=U_{1}\sigma_{x}\cdot\theta\left(\frac{3\pi}{2}+\frac{1}{4}\frac{\pi}{2}\right)=U_{1}\cdot\theta\left(\frac{\pi}{2}+\frac{3}{4}\frac{\pi}{2}\right)=\theta\left(-\frac{1}{2}\frac{\pi}{2}\right)=\frac{1}{\sqrt{2}}\begin{pmatrix}1\\
--1
-\end{pmatrix}=\left|+\right\rangle =V\cdot\left|1\right\rangle 
-\end{align*}
 
 \end_inset
 
@@ -1147,7 +929,8 @@ base
 \begin_inset Formula $i=2$
 \end_inset
 
- its an equality.
+ its trivial.
+ (😉)
 \end_layout
 
 \begin_layout Itemize

@@ -792,11 +792,11 @@ If we find
 
 .
  Lets think in terms of rotation: Let 
-\begin_inset Formula $U_{2}=Rot\left(\pi+\frac{1}{4}\frac{\pi}{2}\right)$
+\begin_inset Formula $U_{2}=Rot\left(\frac{3\pi}{2}+\frac{3}{4}\frac{\pi}{2}\right)$
 \end_inset
 
  and 
-\begin_inset Formula $U_{1}=Rot\left(\frac{\pi}{2}+\frac{3}{4}\frac{\pi}{2}\right)$
+\begin_inset Formula $U_{1}=Rot\left(\frac{3\pi}{2}+\frac{1}{4}\frac{\pi}{2}\right)$
 \end_inset
 
 .
@@ -817,22 +817,31 @@ If we find
 \begin_inset Formula $\left|1\right\rangle $
 \end_inset
 
-, where 
-\begin_inset Formula $\theta\left(\alpha\right)=\begin{pmatrix}\cos\alpha\\
-\sin\alpha
-\end{pmatrix}$
+, graphically:
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /home/roei/Desktop/U1U2full.jpg
+	scale 40
+
 \end_inset
 
-:
-\begin_inset Formula 
-\begin{align*}
- & U_{1}\sigma_{x}U_{2}\cdot\left|0\right\rangle =U_{1}\sigma_{x}U_{2}\cdot\theta\left(0\right)=U_{1}\sigma_{x}\cdot\theta\left(\pi+\frac{1}{4}\frac{\pi}{2}\right)=U_{1}\cdot\theta\left(\pi+\frac{3}{4}\frac{\pi}{2}\right)=\theta\left(\frac{1}{2}\frac{\pi}{2}\right)=\frac{1}{\sqrt{2}}\begin{pmatrix}1\\
-1
-\end{pmatrix}=\left|-\right\rangle =V\cdot\left|0\right\rangle  & \,\\
- & U_{1}\sigma_{x}U_{2}\cdot\left|0\right\rangle =U_{1}\sigma_{x}U_{2}\cdot\theta\left(\frac{\pi}{2}\right)=U_{1}\sigma_{x}\cdot\theta\left(\frac{3\pi}{2}+\frac{1}{4}\frac{\pi}{2}\right)=U_{1}\cdot\theta\left(\frac{\pi}{2}+\frac{3}{4}\frac{\pi}{2}\right)=\theta\left(-\frac{1}{2}\frac{\pi}{2}\right)=\frac{1}{\sqrt{2}}\begin{pmatrix}1\\
--1
-\end{pmatrix}=\left|+\right\rangle =V\cdot\left|1\right\rangle 
-\end{align*}
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \end_inset
 
