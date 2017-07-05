@@ -71,7 +71,7 @@
 \begin_body
 
 \begin_layout Section
-Quantum Encryption Protocol BHM96
+Question 3 - Quantum Encryption Protocol BHM96
 \end_layout
 
 \begin_layout Enumerate
@@ -195,6 +195,14 @@ Question 4 - Implementation of Quantum Error Correction Code
 \end_layout
 
 \begin_layout Enumerate
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
 The overall state before any operators are applied: 
 \begin_inset Formula $\alpha\left|000\right\rangle +\beta\left|100\right\rangle $
 \end_inset
@@ -212,6 +220,76 @@ The overall state before any operators are applied:
 \end_layout
 
 \begin_layout Enumerate
+For brevity, each arrow represent an operator, according to order in which
+ their applied in the circuit.
+\begin_inset Formula 
+\begin{align*}
+\alpha\left|000\right\rangle +\beta\left|111\right\rangle  & \to\alpha\left|000\right\rangle +\beta\left|101\right\rangle \to\alpha\left|000\right\rangle +\beta\left|100\right\rangle \to\alpha\left|000\right\rangle +\beta\left|100\right\rangle =\left(\alpha\left|0\right\rangle +\beta\left|1\right\rangle \right)\otimes\left|00\right\rangle  & \,\\
+\alpha\left|100\right\rangle +\beta\left|011\right\rangle  & \to\alpha\left|110\right\rangle +\beta\left|011\right\rangle \to\alpha\left|111\right\rangle +\beta\left|011\right\rangle \to\alpha\left|011\right\rangle +\beta\left|111\right\rangle =\left(\alpha\left|0\right\rangle +\beta\left|1\right\rangle \right)\otimes\left|11\right\rangle \\
+\alpha\left|010\right\rangle +\beta\left|101\right\rangle  & \to\alpha\left|010\right\rangle +\beta\left|111\right\rangle \to\alpha\left|010\right\rangle +\beta\left|110\right\rangle \to\alpha\left|010\right\rangle +\beta\left|110\right\rangle =\left(\alpha\left|0\right\rangle +\beta\left|1\right\rangle \right)\otimes\left|10\right\rangle \\
+\alpha\left|001\right\rangle +\beta\left|110\right\rangle  & \to\alpha\left|001\right\rangle +\beta\left|100\right\rangle \to\alpha\left|001\right\rangle +\beta\left|101\right\rangle \to\alpha\left|001\right\rangle +\beta\left|101\right\rangle =\left(\alpha\left|0\right\rangle +\beta\left|1\right\rangle \right)\otimes\left|01\right\rangle 
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Like before, arrows denote operators in chronical order.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\alpha\left|000\right\rangle +\beta\left|100\right\rangle \to\alpha\left|000\right\rangle +\beta\left|110\right\rangle \to\alpha\left|000\right\rangle +\beta\left|111\right\rangle \to\alpha\left|+++\right\rangle +\beta\left|---\right\rangle 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+It is suffice to show that after the first Hadamard operator, we get the
+ states described in section (1.b):
+\begin_inset Formula 
+\begin{align*}
+\alpha\left|+++\right\rangle +\beta\left|---\right\rangle  & \to\alpha\left|000\right\rangle +\beta\left|111\right\rangle \\
+\alpha\left|-++\right\rangle +\beta\left|+--\right\rangle  & \to\alpha\left|100\right\rangle +\beta\left|011\right\rangle \\
+\alpha\left|+-+\right\rangle +\beta\left|-+-\right\rangle  & \to\alpha\left|010\right\rangle +\beta\left|101\right\rangle \\
+\alpha\left|++-\right\rangle +\beta\left|--+\right\rangle  & \to\alpha\left|001\right\rangle +\beta\left|110\right\rangle 
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\left|\psi\right\rangle \left|0\right\rangle _{8} & =\alpha\left|000\right\rangle \otimes\left|000\right\rangle \otimes\left|000\right\rangle +\beta\left|100\right\rangle \otimes\left|000\right\rangle \otimes\left|000\right\rangle  & \,\\
+ & \to\alpha\left|000\right\rangle \otimes\left|000\right\rangle \otimes\left|000\right\rangle +\beta\left|100\right\rangle \otimes\left|100\right\rangle \otimes\left|000\right\rangle \\
+ & \to\alpha\left|000\right\rangle \otimes\left|000\right\rangle \otimes\left|000\right\rangle +\beta\left|100\right\rangle \otimes\left|100\right\rangle \otimes\left|100\right\rangle \\
+ & \to\alpha\frac{1}{2\sqrt{2}}\left(\left|000\right\rangle +\left|100\right\rangle \right)\otimes\left(\left|000\right\rangle +\left|100\right\rangle \right)\otimes\left(\left|000\right\rangle +\left|100\right\rangle \right)+\beta\frac{1}{2\sqrt{2}}\left(\left|000\right\rangle -\left|100\right\rangle \right)\otimes\left(\left|000\right\rangle -\left|100\right\rangle \right)\otimes\left(\left|000\right\rangle -\left|100\right\rangle \right)\\
+ & \to\alpha\frac{1}{2\sqrt{2}}\left(\left|000\right\rangle +\left|110\right\rangle \right)\otimes\left(\left|000\right\rangle +\left|110\right\rangle \right)\otimes\left(\left|000\right\rangle +\left|110\right\rangle \right)+\beta\frac{1}{2\sqrt{2}}\left(\left|000\right\rangle -\left|110\right\rangle \right)\otimes\left(\left|000\right\rangle -\left|110\right\rangle \right)\otimes\left(\left|000\right\rangle -\left|110\right\rangle \right)\\
+ & \to\alpha\frac{1}{2\sqrt{2}}\left(\left|000\right\rangle +\left|111\right\rangle \right)\otimes\left(\left|000\right\rangle +\left|111\right\rangle \right)\otimes\left(\left|000\right\rangle +\left|111\right\rangle \right)+\beta\frac{1}{2\sqrt{2}}\left(\left|000\right\rangle -\left|111\right\rangle \right)\otimes\left(\left|000\right\rangle -\left|111\right\rangle \right)\otimes\left(\left|000\right\rangle -\left|111\right\rangle \right)
+\end{align*}
+
+\end_inset
+
 
 \end_layout
 
