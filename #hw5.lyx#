@@ -27,9 +27,10 @@
 \bibtex_command default
 \index_command default
 \paperfontsize default
+\spacing single
 \use_hyperref false
 \papersize default
-\use_geometry false
+\use_geometry true
 \use_package amsmath 1
 \use_package amssymb 1
 \use_package cancel 1
@@ -53,6 +54,10 @@
 \shortcut idx
 \color #008000
 \end_index
+\leftmargin 1cm
+\topmargin 1cm
+\rightmargin 1cm
+\bottommargin 1cm
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
@@ -69,6 +74,532 @@
 \end_header
 
 \begin_body
+
+\begin_layout Section
+Question 1 - Discrete Logarithm Problem
+\end_layout
+
+\begin_layout Enumerate
+We use the following circuit (where 
+\begin_inset Formula $x$
+\end_inset
+
+, 
+\begin_inset Formula $y$
+\end_inset
+
+, and 
+\begin_inset Formula $\psi$
+\end_inset
+
+ are 
+\begin_inset Formula $\left|0\right\rangle _{n}$
+\end_inset
+
+):
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /home/roei/Downloads/Untitled Diagram.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Its easy to see that this circuit produces the desired state:
+\begin_inset Formula 
+\begin{align*}
+\left|0\right\rangle _{n}\left|0\right\rangle _{n}\left|0\right\rangle _{n} & \to\left(\frac{1}{\sqrt{2^{n}}}\sum_{i=0}^{2^{n}-1}\left|i\right\rangle \right)\left(\frac{1}{\sqrt{2^{n}}}\sum_{i=0}^{2^{n}-1}\left|i\right\rangle \right)\left|0\right\rangle _{n} & \left(H_{n}\otimes H_{n}\right)\\
+ & =\frac{1}{2^{n}}\sum_{i=0}^{2^{n}-1}\sum_{j=0}^{2^{n}-1}\left|i\right\rangle \left|j\right\rangle \left|0\right\rangle _{n}\\
+ & \to\frac{1}{2^{n}}\sum_{i=0}^{2^{n}-1}\sum_{j=0}^{2^{n}-1}\left|i\right\rangle \left|j\right\rangle \left|f\left(i,\,j\right)\right\rangle _{n} & \left(U_{f}\right)\\
+ & =\frac{1}{2^{n}}\sum_{x=0}^{2^{n}-1}\sum_{y=0}^{2^{n}-1}\left|x\right\rangle \left|y\right\rangle \left|f\left(x,\,y\right)\right\rangle _{n} & \left(\text{changing names}\right)\\
+ & \to\frac{1}{2^{n}}\sum_{x=0}^{2^{n}-1}\sum_{y=0}^{2^{n}-1}\left(\frac{1}{\sqrt{2^{n}}}\sum_{l=0}^{2^{n}-1}e^{\frac{2\pi i\cdot lx}{2^{n}}}\left|l\right\rangle \otimes\frac{1}{\sqrt{2^{n}}}\sum_{k=0}^{2^{n}-1}e^{\frac{2\pi i\cdot ky}{2^{n}}}\left|k\right\rangle \right)\left|f\left(x,\,y\right)\right\rangle _{n} & \left(QFT_{n}\otimes QFT_{n}\right)\\
+ & =\frac{1}{2^{2n}}\sum_{x,y,l,k=0}^{2^{n}-1}e^{\frac{2\pi i\cdot lx}{2^{n}}}e^{\frac{2\pi i\cdot ky}{2^{n}}}\left|l\right\rangle \left|k\right\rangle \left|f\left(x,\,y\right)\right\rangle _{n}\\
+ & =\boxed{\frac{1}{2^{2n}}\sum_{x,y,\ell_{1},\ell_{2}=0}^{2^{n}-1}e^{\frac{2\pi i\cdot\left(\ell_{1}x+\ell_{2}y\right)}{2^{n}}}\left|\ell_{1}\right\rangle \left|\ell_{2}\right\rangle \left|f\left(x,\,y\right)\right\rangle _{n}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+f\left(x,y\right) & =g^{x}a^{y}\mod N & \,\\
+ & =g^{x}\left(g^{s}\right)^{y}\mod N\\
+ & =g^{x+sy}\mod N
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+ & f\left(x_{1},y_{1}\right)=f\left(x_{2},y_{2}\right)\mod N & \iff\\
+ & g^{x_{1}+sy_{1}}=g^{x_{2}+sy_{2}}\mod N & \iff\\
+ & g^{\left(x_{1}+sy_{1}\right)-\left(x_{2}+sy_{2}\right)}=1\mod N
+\end{align*}
+
+\end_inset
+
+The third equation is derived by multiplying with the inverse of 
+\begin_inset Formula $g^{x_{2}+sy_{2}}$
+\end_inset
+
+, which must exist because 
+\begin_inset Formula $\mathbb{Z}_{N}$
+\end_inset
+
+ is a group.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+ & f\left(x_{1},y_{1}\right)=f\left(x_{2},y_{2}\right)\mod N & \iff\\
+ & g^{\left(x_{1}+sy_{1}\right)-\left(x_{2}+sy_{2}\right)}=1\mod N & \iff\\
+ & \left(x_{1}+sy_{1}\right)-\left(x_{2}+sy_{2}\right)=\left(N-1\right)\cdot k & \text{for }\text{k\in\mathbb{Z}}\iff\\
+ & \left(x_{1}+sy_{1}\right)-\left(x_{2}+sy_{2}\right)=0\mod\left(N-1\right) & \iff\\
+ & x_{1}+sy_{1}=x_{2}+sy_{2}\mod\left(N-1\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+We can use the previous section: 
+\begin_inset Formula $x_{1}=x-sk$
+\end_inset
+
+, 
+\begin_inset Formula $y_{1}=y+k$
+\end_inset
+
+, 
+\begin_inset Formula $x_{2}=x$
+\end_inset
+
+, 
+\begin_inset Formula $y_{2}=y$
+\end_inset
+
+.
+ When we plug everything in we get:
+\begin_inset Formula 
+\[
+x-sk+sk+sy=x+sy\,\mod N-1
+\]
+
+\end_inset
+
+which are indeed equal.
+ So we get 
+\begin_inset Formula $f\left(x,y\right)=f\left(x-sk,y+k\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+The (not normalized) state we are left with after the partial measurement
+ is 
+\begin_inset Formula 
+\[
+\left|f\left(x_{0},y_{0}\right)\right\rangle \cdot\left(\frac{1}{2^{2n}}\sum_{x,y,\ell_{1},\ell_{2}=0}^{2^{n}-1}e^{\frac{2\pi i\cdot\left(\ell_{1}x+\ell_{2}y\right)}{2^{n}}}\left|\ell_{1}\right\rangle \left|\ell_{2}\right\rangle \left|f\left(x,\,y\right)\right\rangle _{n}\right)
+\]
+
+\end_inset
+
+which is essentialy equivilent to eliminating from the sum any pair of 
+\begin_inset Formula $x,y$
+\end_inset
+
+ which 
+\series bold
+does not
+\series default
+ hold 
+\begin_inset Formula $f\left(x_{0},y_{0}\right)=f\left(x,y\right)$
+\end_inset
+
+.
+ By using subsection (4), we know that the group of 
+\begin_inset Formula $\left(x,y\right)$
+\end_inset
+
+ that does hold this equation are 
+\begin_inset Formula 
+\[
+\left\{ \left(x,y\right):x+ys=x_{0}+y_{0}s=c\,\left(\mod N-1\right)\right\} 
+\]
+
+\end_inset
+
+so the (not normalized) state after the partial measurement is:
+\begin_inset Formula 
+\[
+\sum_{\ell_{1},\ell_{2}=0}^{2^{n}-1}\sum_{\left(x,y\right)\in\left\{ \left(x,y\right):x+ys=c\left(\mod N-1\right)\right\} }e^{\frac{2\pi i\cdot\left(\ell_{1}x+\ell_{2}y\right)}{2^{n}}}\left|\ell_{1}\right\rangle \left|\ell_{2}\right\rangle 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Question 2 - Quantum Communication
+\end_layout
+
+\begin_layout Enumerate
+If Alice and Bob are using classic and deterministic methods, then each
+ one of them has a table which says what output bit they will send depending
+ on the input bit they will get.
+ We can analyze all the possible scanarios.
+ We denote the 'choosing function' for Alice with 
+\begin_inset Formula $f_{A}$
+\end_inset
+
+, and 
+\begin_inset Formula $f_{B}$
+\end_inset
+
+ for Bob.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $f_{A}\left(x\right)=1-x$
+\end_inset
+
+, 
+\begin_inset Formula $f_{B}=x$
+\end_inset
+
+: Alice and Bob we succeed only if 
+\begin_inset Formula $\left(x_{a},x_{b}\right)\in\left\{ \left(1,0\right),\left(0,1\right)\right\} $
+\end_inset
+
+, which makes it a 
+\begin_inset Formula $\frac{2}{4}$
+\end_inset
+
+ chance of success method.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $f_{A}\left(x\right)=x$
+\end_inset
+
+, 
+\begin_inset Formula $f_{B}\left(x\right)=x$
+\end_inset
+
+: Alice and Bob we succeed only if 
+\begin_inset Formula $\left(x_{a},x_{b}\right)\in\left\{ \left(0,0\right)\right\} $
+\end_inset
+
+, which makes it a 
+\begin_inset Formula $\frac{1}{4}$
+\end_inset
+
+ chance of success method.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $f_{A}\left(x\right)=0$
+\end_inset
+
+, 
+\begin_inset Formula $f_{B}\left(x\right)=x$
+\end_inset
+
+: Alice and Bob we succeed only if 
+\begin_inset Formula $\left(x_{a},x_{b}\right)\in\left\{ \left(1,1\right),\left(1,0\right),\left(0,0\right)\right\} $
+\end_inset
+
+, which makes it a 
+\begin_inset Formula $\frac{3}{4}$
+\end_inset
+
+ chance of success method.
+\end_layout
+
+\begin_layout Standard
+The other scanarios are similar, and wont produce greater chance of success.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Resulting state after Alice's operation:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+In standard base: 
+\begin_inset Formula $\frac{\begin{pmatrix}\cos\alpha\\
+\sin\alpha
+\end{pmatrix}\left|0\right\rangle -\begin{pmatrix}-\sin\alpha\\
+\cos\alpha
+\end{pmatrix}\left|1\right\rangle }{\sqrt{2}}=\frac{1}{\sqrt{2}}\left(\begin{pmatrix}\cos\alpha\\
+0\\
+\sin\alpha\\
+0
+\end{pmatrix}-\begin{pmatrix}0\\
+-\sin\alpha\\
+0\\
+\cos\alpha
+\end{pmatrix}\right)=\frac{1}{\sqrt{2}}\begin{pmatrix}\cos\alpha\\
+\sin\alpha\\
+\sin\alpha\\
+-\cos\alpha
+\end{pmatrix}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+In Bell's base: 
+\size scriptsize
+
+\begin_inset Formula $\begin{pmatrix}| & | & | & |\\
+\phi_{+} & \phi_{-} & \psi_{+} & \psi_{-}\\
+| & | & | & |
+\end{pmatrix}^{\dagger}\left(\frac{1}{\sqrt{2}}\begin{pmatrix}\cos\alpha\\
+\sin\alpha\\
+\sin\alpha\\
+-\cos\alpha
+\end{pmatrix}\right)=\frac{1}{\sqrt{2}}\begin{pmatrix}1 & 0 & 0 & 1\\
+1 & 0 & 0 & -1\\
+0 & 1 & 1 & 0\\
+0 & 1 & -1 & 0
+\end{pmatrix}\left(\frac{1}{\sqrt{2}}\begin{pmatrix}\cos\alpha\\
+\sin\alpha\\
+\sin\alpha\\
+-\cos\alpha
+\end{pmatrix}\right)=\frac{1}{2}\begin{pmatrix}0\\
+2\cos\alpha\\
+2\sin\alpha\\
+0
+\end{pmatrix}=\boxed{\cos\alpha\left|\phi_{-}\right\rangle +\sin\alpha\left|\psi_{+}\right\rangle }$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Alice will perform 
+\begin_inset Formula $R_{\alpha}$
+\end_inset
+
+ operation on her qubit, and Bob will perform 
+\begin_inset Formula $R_{\beta}^{\dagger}$
+\end_inset
+
+ (which is essentialy 
+\begin_inset Formula $R_{-\beta}$
+\end_inset
+
+) on his qubit.
+ The state in stadard base is:
+\size scriptsize
+
+\begin_inset Formula 
+\[
+R_{\beta}^{\dagger}\cdot\left(\frac{1}{\sqrt{2}}\begin{pmatrix}\cos\alpha\\
+\sin\alpha\\
+\sin\alpha\\
+-\cos\alpha
+\end{pmatrix}\right)=\frac{1}{\sqrt{2}}\begin{pmatrix}\cos\beta & \sin\beta & 0 & 0\\
+-\sin\beta & \cos\beta & 0 & 0\\
+0 & 0 & \cos\beta & \sin\beta\\
+0 & 0 & -\sin\beta & \cos\beta
+\end{pmatrix}\begin{pmatrix}\cos\alpha\\
+\sin\alpha\\
+\sin\alpha\\
+-\cos\alpha
+\end{pmatrix}=\frac{1}{\sqrt{2}}\begin{pmatrix}\cos\alpha\cos\beta+\sin\alpha\sin\beta\\
+-\cos\alpha\sin\beta+\sin\alpha\cos\beta\\
+\sin\alpha\cos\beta-\cos\alpha\sin\beta\\
+-\sin\alpha\sin\beta-\cos\alpha\cos\beta
+\end{pmatrix}=\frac{1}{\sqrt{2}}\begin{pmatrix}\cos\left(\alpha-\beta\right)\\
+\sin\left(\alpha-\beta\right)\\
+\sin\left(\alpha-\beta\right)\\
+-\cos\left(\alpha-\beta\right)
+\end{pmatrix}
+\]
+
+\end_inset
+
+
+\size default
+Now we can transform it to Bell's base:
+\size scriptsize
+
+\begin_inset Formula 
+\[
+\begin{pmatrix}| & | & | & |\\
+\phi_{+} & \phi_{-} & \psi_{+} & \psi_{-}\\
+| & | & | & |
+\end{pmatrix}^{\dagger}\left(\frac{1}{\sqrt{2}}\begin{pmatrix}\cos\left(\alpha-\beta\right)\\
+\sin\left(\alpha-\beta\right)\\
+\sin\left(\alpha-\beta\right)\\
+-\cos\left(\alpha-\beta\right)
+\end{pmatrix}\right)=\frac{1}{2}\begin{pmatrix}1 & 0 & 0 & 1\\
+1 & 0 & 0 & -1\\
+0 & 1 & 1 & 0\\
+0 & 1 & -1 & 0
+\end{pmatrix}\begin{pmatrix}\cos\left(\alpha-\beta\right)\\
+\sin\left(\alpha-\beta\right)\\
+\sin\left(\alpha-\beta\right)\\
+-\cos\left(\alpha-\beta\right)
+\end{pmatrix}=\frac{1}{2}\begin{pmatrix}0\\
+2\cos\left(\alpha-\beta\right)\\
+2\sin\left(\alpha-\beta\right)\\
+0
+\end{pmatrix}=\boxed{\cos\left(\alpha-\beta\right)\left|\phi_{-}\right\rangle +\sin\left(\alpha-\beta\right)\left|\psi_{+}\right\rangle }
+\]
+
+\end_inset
+
+
+\size default
+Alice and Bob will measure the same bit with a probablity of 
+\begin_inset Formula $\frac{\cos^{2}\left(\alpha-\beta\right)}{\cos^{2}\left(\alpha-\beta\right)+\sin^{2}\left(\alpha-\beta\right)}=\boxed{\cos^{2}\left(\alpha-\beta\right)}$
+\end_inset
+
+ (The probability of measuring 
+\begin_inset Formula $\left|\phi_{-}\right\rangle $
+\end_inset
+
+ in Bell's base).
+\end_layout
+
+\begin_layout Enumerate
+Rational: Alice and Bob know that if they got 
+\begin_inset Formula $0$
+\end_inset
+
+ as their input, they should choose the same bit as output (so that 
+\begin_inset Formula $a\oplus b=0$
+\end_inset
+
+).
+ So, we can use what we learned in the previous sections: Alice and Bob
+ will share the state 
+\begin_inset Formula $\left|\phi_{-}\right\rangle $
+\end_inset
+
+ before the procedure starts, and will perform 
+\begin_inset Formula $R_{\alpha}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{\beta}$
+\end_inset
+
+ as described before, with 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ and 
+\begin_inset Formula $\beta$
+\end_inset
+
+ that will depend on their input.
+ Then, they will measure the resulting state (which we calculated in section
+ 3), and send the result as output bit.
+ 
+\begin_inset Formula $Pr\left\{ a\oplus b=0\right\} =\cos^{2}\left(\alpha-\beta\right)$
+\end_inset
+
+, so if one participant (either Alice or Bob) get 0 input, he/she should
+ choose his angle so that 
+\begin_inset Formula $\cos^{2}\left(\alpha-\beta\right)$
+\end_inset
+
+ will be 
+\series bold
+maximized
+\series default
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+We denote by 
+\begin_inset Formula $\alpha_{1}$
+\end_inset
+
+ the angle Alice chooses if she gets 
+\begin_inset Formula $0$
+\end_inset
+
+, and 
+\begin_inset Formula $\alpha_{2}$
+\end_inset
+
+ the values she chooses for 
+\begin_inset Formula $1$
+\end_inset
+
+.
+ Respectivly, we denote by 
+\begin_inset Formula $\beta_{1}$
+\end_inset
+
+,
+\begin_inset Formula $\beta_{2}$
+\end_inset
+
+ these angles for Bob.
+ The probability for success is given by:
+\begin_inset Formula 
+\[
+p\left(\alpha_{1},\alpha_{2},\beta_{1},\beta_{2}\right)=\frac{1}{4}\left(\cos^{2}\left(\alpha_{1}-\beta_{1}\right)+\cos^{2}\left(\alpha_{2}-\beta_{1}\right)+\cos^{2}\left(\alpha_{1}-\beta_{2}\right)+\sin^{2}\left(\alpha_{2}-\beta_{2}\right)\right)
+\]
+
+\end_inset
+
+We used GNU Octave to find the maximum for this non-linear optimization
+ problem
+\end_layout
 
 \begin_layout Section
 Question 3 - Quantum Encryption Protocol BHM96
@@ -154,11 +685,11 @@ From these results, we learn that if Alice and Bob use the same base, and
 \begin_inset Formula $A$
 \end_inset
 
-:
+: 
 \begin_inset Formula 
 \begin{align*}
 tr_{A}\left(\psi_{-}\right) & =\left|0\right\rangle \frac{\left|01\right\rangle -\left|10\right\rangle }{\sqrt{2}}\frac{\left\langle 01\right|-\left\langle 10\right|}{\sqrt{2}}\left\langle 0\right|+\left|1\right\rangle \frac{\left|01\right\rangle -\left|10\right\rangle }{\sqrt{2}}\frac{\left\langle 01\right|-\left\langle 10\right|}{\sqrt{2}}\left\langle 1\right| & \,\\
- & =\frac{\left|1\right\rangle \left\langle 1\right|}{2}+\frac{\left|0\right\rangle \left\langle 0\right|}{2}
+ & =\frac{\left|0\right\rangle \left\langle 0\right|}{2}+\frac{\left|1\right\rangle \left\langle 1\right|}{2}
 \end{align*}
 
 \end_inset
@@ -167,12 +698,9 @@ we get the
 \series bold
 completely mixed state
 \series default
-, so in 
-\bar under
-any base
-\bar default
-, this measurement doesn't add any information for Center regarding Alice's
+, so this measurement doesn't add any information for Center regarding Alice's
  bit.
+ 
 \end_layout
 
 \end_deeper
@@ -281,9 +809,20 @@ It is suffice to show that after the first Hadamard operator, we get the
 \begin_inset Formula 
 \begin{align*}
 \left|\psi\right\rangle \left|0\right\rangle _{8} & =\alpha\left|000\right\rangle \otimes\left|000\right\rangle \otimes\left|000\right\rangle +\beta\left|100\right\rangle \otimes\left|000\right\rangle \otimes\left|000\right\rangle  & \,\\
- & \to\\
+ & \to\alpha\left|000\right\rangle \otimes\left|000\right\rangle \otimes\left|000\right\rangle +\beta\left|100\right\rangle \otimes\left|100\right\rangle \otimes\left|000\right\rangle \\
+ & \to\alpha\left|000\right\rangle \otimes\left|000\right\rangle \otimes\left|000\right\rangle +\beta\left|100\right\rangle \otimes\left|100\right\rangle \otimes\left|100\right\rangle \\
+ & \to\alpha\frac{1}{2\sqrt{2}}\left(\left|000\right\rangle +\left|100\right\rangle \right)\otimes\left(\left|000\right\rangle +\left|100\right\rangle \right)\otimes\left(\left|000\right\rangle +\left|100\right\rangle \right)+\beta\frac{1}{2\sqrt{2}}\left(\left|000\right\rangle -\left|100\right\rangle \right)\otimes\left(\left|000\right\rangle -\left|100\right\rangle \right)\otimes\left(\left|000\right\rangle -\left|100\right\rangle \right)\\
+ & \to\alpha\frac{1}{2\sqrt{2}}\left(\left|000\right\rangle +\left|110\right\rangle \right)\otimes\left(\left|000\right\rangle +\left|110\right\rangle \right)\otimes\left(\left|000\right\rangle +\left|110\right\rangle \right)+\beta\frac{1}{2\sqrt{2}}\left(\left|000\right\rangle -\left|110\right\rangle \right)\otimes\left(\left|000\right\rangle -\left|110\right\rangle \right)\otimes\left(\left|000\right\rangle -\left|110\right\rangle \right)\\
+ & \to\alpha\frac{1}{2\sqrt{2}}\left(\left|000\right\rangle +\left|111\right\rangle \right)\otimes\left(\left|000\right\rangle +\left|111\right\rangle \right)\otimes\left(\left|000\right\rangle +\left|111\right\rangle \right)+\beta\frac{1}{2\sqrt{2}}\left(\left|000\right\rangle -\left|111\right\rangle \right)\otimes\left(\left|000\right\rangle -\left|111\right\rangle \right)\otimes\left(\left|000\right\rangle -\left|111\right\rangle \right)
 \end{align*}
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset space ~
 \end_inset
 
 
